@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Roboto&display=swap');
+/*
+font-family: 'Monoton', cursive;
+font-family: 'Roboto', sans-serif;
+*/
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.hidden {
+  visibility: none;
+}
+
+/* Login button top-right */
+.login-header {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+}
+
+.login-button:link, .login-button:visited {
+  text-decoration: none;
+  color: white;
+}
+
+.login-button:hover {
+  border-bottom: 3px solid white;
+}
+
+h1, h2 {
+  padding-bottom: 10px;
+}
+
+h1.title {  
+  font-family: 'Monoton', cursive;
+  font-size: 2.5rem;
+  text-shadow: -3px 3px maroon;
+}
+
+body {
+  background-image: url('/image/bg.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Body background image color overlay effect */
+body:before {
+  z-index: -999;
+  content: "";
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(107, 2, 2, 0.5);
+}
+
+header {
+  background-color: black;
+  padding: 30px;
+  margin-bottom: 10px;
+}
+
+header, footer {
+  text-align: center;
+  opacity: 0.8;
+}
+
+.top-nav a {
+  color: rgb(218, 214, 214);
+  font-size: 1.2rem;
+  padding: 0 5px;
+  margin: 0 5px;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  transition: border-bottom 1s;
+}
+
+.top-nav a:hover {
+  border-bottom: 3px solid white;
+}
+
+.top-nav .active {
+  color: white;
+  border-bottom: 3px solid white;
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  border: 2px solid maroon;
+  border-radius: 5px;
+}
+
+/* Master-container to align the containers in the middle of the site: 
+  [movie-scroller]
+  [main-middle-container] -> main-content, screenings-today */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+}
+
+.movie-scroller, .main-middle-container {
+  width: 850px;
+  max-width: 95%;
+  border-radius: 5px;
+}
+
+/* Side-scroller with current movies below navigation and above main-content */
+.movie-scroller {
+  align-self: center;
+  margin-bottom: 10px;
+}
+
+/* Container to align: main-content, screenings-today */
+.main-middle-container {
+  margin: 0 auto;
+  display:flex;
+  flex-direction: row;
+}
+
+.main-content {
+  color: whitesmoke;
+  line-height: 1.5rem;
+  flex: 1;
+  background-color: black;
+  opacity: 0.85;
+  padding: 20px;
+  border-radius: 5px;
+  margin-right: 10px;
+  border: 2px solid maroon;
+}
+
+.article1 {
+  background-color: aqua;
+}
+
+.movies {
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Clickable movie posters under Movies page */
+.movie-poster {
+  width: 30%;
+}
+
+.movie-poster:hover {
+  box-shadow:0 0 8px 3px white;
+  border: 1px solid white;
+}
+
+/* Container to the right of main-content */
+.screenings-today {
+  background-color: black;
+  color: white;
+  opacity: 0.95;
+  padding: 20px;
+  border-radius: 5px;
+  height: fit-content;
+  border: 2px solid maroon;
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  color: white;
+  padding: 20px;
+  background-color: black;
+}
+
+/* Responsive changes */
+@media screen and (max-width: 600px) {
+  .main-middle-container {
+    flex-direction: column;
+  }
+
+  .main-content {
+    order: 1;
+    margin-top: 10px;
+    margin-right: 0;
+  }
+}

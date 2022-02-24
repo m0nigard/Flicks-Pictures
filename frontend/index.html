@@ -5,17 +5,45 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="/style.css">
+  <title>Flicks-Pictures</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-  <h1>Admin view</h1>
-  <div class="select_holder"></div>
-  <div class="data"></div>
+  <header>
+    <h1 class="title">🎥 Flicks Pictures</h1>
+    <nav class="top-nav">
+      <a class="active" href="/">Start</a>
+      <a href="/movies">Movies</a>
+      <a href="/tickets">Tickets</a>
+    </nav>
 
+    <div class="login-header top-nav"><a class="login-button" href="login">Login</a></div>
+  </header>
 
-  <script src="/main.js"></script>
+  <main>
+    <div class="movie-scroller"><img class="placeholder" src="/image/movie-scroller-placeholder.png"></div>
+    <div class="main-middle-container">
+      <span class="main-content"></span>
+      <span class="screenings-today">
+        <h2>Today</h2>
+        <h3>Big</h3>
+        <p>20:30 - Alfons Åberg</p>
+        <p>20:30 - Alfons Åberg</p>
+        <h3>Small</h3>
+        <p>20:30 - Alfons Åberg</p>
+      </span>
+    </div>
+  </main>
+
+  <footer>
+    <p>
+      <b>Flicks Pictures</b> <br>
+    <address>Hkr Street 1, 666 66 Kristianstad</address>
+    </p>
+  </footer>
+
+  <script src="/js/main.js"></script>
 </body>
 
 </html>
