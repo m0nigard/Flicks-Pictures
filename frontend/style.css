@@ -1,0 +1,32 @@
+body{
+  background-color: whitesmoke;
+}
+
+th{
+  text-align: left;
+}
+
+th, td{
+  padding: 5px 10px;
+}
+
+tr{
+  background-color: whitesmoke;
+  color: black;
+}
+
+tbody tr:nth-child(odd){
+  background-color: lightgrey;
+}
+
+table{
+  border-collapse: collapse;
+}
+
+th.number, td.number {
+  text-align: right;
+}
+
+.select_holder{
+  margin-bottom: 12px;
+}
