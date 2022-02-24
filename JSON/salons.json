@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Big Flicks",
+    "seats": 50,
+    "seatsPerRow": [
+      6,
+      8,
+      10,
+      12,
+      14
+    ]
+  },
+  {
+    "name": "Little Flicks",
+    "seats": 35,
+    "seatsPerRow": [
+      4,
+      6,
+      10,
+      15
+    ]
+  }
+]
+

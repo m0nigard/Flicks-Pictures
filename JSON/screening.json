@@ -1,0 +1,63 @@
+[
+  {
+    "auditorium": "Big Flicks",
+    "film": "Clifford the big red dog",
+    "date": "2022-04-22",
+    "time": "14.30"
+  },
+  {
+    "auditorium": "Big Flicks",
+    "film": "Uncharted",
+    "date": "2022-04-22",
+    "time": "17.40"
+  },
+  {
+    "auditorium": "Little Flicks",
+    "film": "Marry Me",
+    "date": "2022-04-22",
+    "time": "17.40"
+  },
+  {
+    "auditorium": "Big Flicks",
+    "film": "The Batman",
+    "date": "2022-04-22",
+    "time": "20:40"
+  },
+  {
+    "auditorium": "Little Flicks",
+    "film": "The Wolf of Wall Street",
+    "date": "2022-04-22",
+    "time": "20:40"
+  },
+  {
+    "auditorium": "Big Flicks",
+    "film": "Jackass Forever",
+    "date": "2022-04-23",
+    "time": "14.30"
+  },
+  {
+    "auditorium": "Big Flicks",
+    "film": "Interstellar",
+    "date": "2022-04-23",
+    "time": "17.40"
+  },
+  {
+    "auditorium": "Little Flicks",
+    "film": "Death on the Nile",
+    "date": "2022-04-23",
+    "time": "17.40"
+  },
+  {
+    "auditorium": "Big Flicks",
+    "film": "Scream",
+    "date": "2022-04-23",
+    "time": "20:40"
+  },
+  {
+    "auditorium": "Little Flicks",
+    "film": "No Time to Die",
+    "date": "2022-04-23",
+    "time": "20:40"
+  }
+]
+

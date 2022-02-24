@@ -203,6 +203,223 @@
    
       }
     ]
+  },
+   {
+    "title": "Jackass Forever",
+    "productionCountries": [
+      "USA"
+    ],
+    "productionYear": 2022,
+    "length": 95,
+    "genre": [
+      "Documentary",
+      "Action",
+      "Comedy"
+    ],
+    "distributor": "Paramount Pictures Studios",
+    "language": "english",
+    "subtitles": "english",
+    "director": "Jeff Tremaine",
+    "actors": [
+      "Johnny Knoxville",
+      "Steve-O",
+      "Chris Pontius"
+    ],
+    "description": "<p>Celebrating the joy of being back together with your best friends and a perfectly executed shot to the dingdong, the original jackass crew return for another round of hilarious, wildly absurd, and often dangerous displays of comedy with a little help from some exciting new cast.</p>",
+    "images": [
+      "jackass1.jpg"
+    ],
+    "Trailer": "https://youtu.be/FNq-QT2Jpng",
+    "reviews": [
+      {
+        "source": "Sydsvenskan",
+        "quote": "A successful comeback of the stunt gang",
+        "stars": 4,
+        "max": 5
+      },
+      {
+        "source": "Svenska Dagbladet",
+        "quote": "The film never deviates from the 20-year-old concept",
+        "stars": 4,
+        "max": 5
+      },
+      {
+        "source": "DN",
+        "quote": "Sure as hell it's time for the laughter comeback?",
+        "stars": 3,
+        "max": 5
+      }
+    ]
+  },
+  {
+    "title": "Marry Me",
+    "productionCountries": [
+      "USA"
+    ],
+    "productionYear": 2022,
+    "length": 112,
+    "genre": [
+      "Comedy",
+      "Music",
+      "Romance"
+    ],
+    "distributor": "Universal Pictures",
+    "language": "english",
+    "subtitles": "english",
+    "director": "Kat Coiro",
+    "actors": [
+      "Jennifer Lopez",
+      "Owen Wilson",
+      "Maluma"
+    ],
+    "description": "<p>Music superstars Kat Valdez and Bastian are getting married before a global audience of fans. But when Kat learns, seconds before her vows, that Bastian has been unfaithful, she decides to marry Charlie, a stranger in the crowd, instead.</p>",
+    "images": [
+      "marry_me1.jpg"
+    ],
+    "Trailer": "https://youtu.be/Ebv9_rNb5Ig",
+    "reviews": [
+      {
+        "source": "Aftonbladet",
+        "quote": "A fairy-tale-like easy-going romantic comedy",
+        "stars": 3,
+        "max": 5
+      },
+      {
+        "source": "Filmtopp",
+        "quote": "it's a worthwhile romantic comedy",
+        "stars": 3,
+        "max": 5
+      }
+    ]
+  },
+  {
+    "title": "Scream",
+    "productionCountries": [
+      "USA"
+    ],
+    "productionYear": 2022,
+    "length": 114,
+    "genre": [
+      "Horror",
+      "Mystery",
+      "Thriller"
+    ],
+    "distributor": "Paramount Pictures",
+    "language": "english",
+    "subtitles": "english",
+    "director": "Matt Bettinelli-Olpin, Tyler Gillett",
+    "actors": [
+      "Neve Campbell",
+      "Courtney Cox",
+      "David Arquette"
+    ],
+    "description": "<p>Twenty-five years after the original series of murders in Woodsboro, a new Ghostface emerges, and Sidney Prescott must return to uncover the truth.</p>",
+    "images": [
+      "scream1.jpg"
+    ],
+    "Trailer": "https://youtu.be/beToTslH17s",
+    "reviews": [
+      {
+        "source": "DN",
+        "quote": "New 'Scream' flashes to the original - but lacks its charm",
+        "stars": 3,
+        "max": 5
+      },
+      {
+        "source": "Svenska Dagbladet",
+        "quote": "The turn of the Tiktok generation to be torn apart",
+        "stars": 4,
+        "max": 5
+      },
+      {
+        "source": "Sydsvenskan",
+        "quote": "Scream is smart, stylish and entertaining",
+        "stars": 4,
+        "max": 5
+      }
+    ]
+  },
+  {
+    "title": "Clifford the big red dog",
+    "productionCountries": [
+      "USA"
+    ],
+    "productionYear": 2022,
+    "length": 96,
+    "genre": [
+      "Adventure",
+      "Comedy",
+      "Family"
+    ],
+    "distributor": "Paramount Pictures",
+    "language": "english",
+    "subtitles": "english",
+    "director": "Walt Becker",
+    "actors": [
+      "Darby Camp",
+      "Jack Whitehall",
+      "Izaac Wang"
+    ],
+    "description": "<p>A young girl's love for a tiny puppy named Clifford makes the dog grow to an enormous size.</p>",
+    "images": [
+      "clifford1.jpg"
+    ],
+    "Trailer": "https://youtu.be/4zH5iYM4wJo",
+    "reviews": [
+      {
+        "source": "Filmparadiset",
+        "quote": "a family film with a really lovely old-fashioned feeling",
+        "stars": 3,
+        "max": 5
+      },
+      {
+        "source": "Filmtopp",
+        "quote": "Predictable family coziness that knows its target audience",
+        "stars": 2,
+        "max": 5
+      }
+    ]
+  },
+  {
+    "title": "Death on the Nile",
+    "productionCountries": [
+      "England"
+    ],
+    "productionYear": 2022,
+    "length": 127,
+    "genre": [
+      "Crime",
+      "Drama",
+      "Mystery"
+    ],
+    "distributor": "20th Century Studios",
+    "language": "english",
+    "subtitles": "english",
+    "director": "Kenneth Branagh",
+    "actors": [
+      "Tom Bateman",
+      "Annette Bening",
+      "Kenneth Branagh"
+    ],
+    "description": "<p>While on vacation on the Nile, Hercule Poirot must investigate the murder of a young heiress.</p><p>Belgian sleuth Hercule Poirot's vacation aboard a glamorous river steamer turns into a terrifying search for a murderer when a picture-perfect couple's idyllic honeymoon is tragically cut short.</p>",
+    "images": [
+      "death_on_the_nile1.jpg"
+    ],
+    "Trailer": "https://youtu.be/dZRqB0JLizw",
+    "reviews": [
+      {
+        "source": "Svenska Dagbladet",
+        "quote": "Unsuccessful attempt to heat up classics",
+        "stars": 2,
+        "max": 5
+      },
+      {
+        "source": "DN",
+        "quote": "Wouldn't it fit better on the TV couch?",
+        "stars": 2,
+        "max": 5
+      }
+    ]
   }
 ]
 
