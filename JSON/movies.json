@@ -1,0 +1,208 @@
+[
+  {
+    "title": "The Wolf of Wall Street",
+    "productionCountries": [
+      "USA"
+    ],
+    "productionYear": 2012,
+    "length": 180,
+    "genre": ["Comedy"],
+    "distributor": "Universal Pictures",
+    "language": "engelska",
+    "subtitles": "svenska",
+    "director": "Martin Scorsese",
+    "actors": [
+      "Leonardo DiCaprio",
+      "Margot Robbie",
+      "Jonah Hill"
+    ],
+    "description": "<p>Stockbroker Jordan Belforts goes from the American dream to total greed when he is transformed from an honest small trader into a corrupt stock market shark with the nickname 'The Wolf Of Wall Street'. Money, power, women and drugs.</p>",
+    "images": [
+      "WolfOfTheWallStreet1.jpg"
+    ],
+    "youtubeTrailers": [
+      "https://youtu.be/iszwuX1AK6A"
+    ],
+    "reviews": [
+      {
+        "source": "NyTimes",
+        "quote": "The movie Leonardo DiCaprio should have gotten an Oscar for. His portrayal of the character is perfect. The movie is well-written, leaving no details out of the original story. Martin Scorsese never fails to impress. One of the only example where the movie is better than the book. The movie never gets boring, I could watch this anytime.",
+        "stars": 4,
+        "max": 5
+      },
+      {
+        "source": "IMDB",
+        "quote": "DiCaprio was great and all the others were great too",
+        "stars": 5,
+        "max": 5
+      },
+      {
+        "source": "IMDB",
+        "quote": "Best movie ever!",
+        "stars": 4,
+        "max": 5
+      }
+    ]
+  }
+   ,{
+    "title": "Interstellar",
+    "productionCountries": [
+      "USA, UK"
+    ],
+    "productionYear": 2014,
+    "length": 169,
+    "genre": ["Adventure", "Drama", "Sci-Fi"],
+    "distributor": "Warner Bros",
+    "language": "engelska",
+    "subtitles": "svenska",
+    "director": "Christopher Nolan",
+    "actors": [
+      "Ellen Burstyn",
+      "Matthew McConaughey",
+      "Mackenzie Foy"
+    ],
+    "description": "<p>A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.</p>",
+    "images": [
+      "Interstellar1.jpg"
+    ],
+    "youtubeTrailers": [
+      "https://youtu.be/zSWdZVtXT7E"
+    ],
+    "reviews": [
+      {
+        "source": "Filmtipset",
+        "quote": "Christopher Nolan's latest work is an epic science fiction story. It has picked up the right ingredients from films such as Stanley Kubrik's 2001 - A Space Adventure, Ridley Scots Alien and Steven Spielberg's Close Contact of the Third Degree.",
+        "stars": 5,
+        "max": 5
+      },
+      {
+        "source": "MOVIEZINE",
+        "quote": "Interstellar takes us to a near future where the earth's assets begin to run out. A group of scientists is given a crucial task - to travel to other star systems and explore if we have a future in space.",
+        "stars": 5,
+        "max": 5
+      },
+      {
+        "source": "SVT",
+        "quote": "Wide views in stimulating astronaut fantasy about black holes and new dimensions. A little too much quantum physical fig language, thinks Fredrik Sahlin who is still impressed.",
+        "stars": 4,
+        "max": 5
+      }
+    ]
+  }
+  
+   ,{
+    "title": "No Time to Die",
+    "productionCountries": [
+      "UK"
+    ],
+    "productionYear": 2020,
+    "length": 183,
+    "genre": ["Action", "Thriller"],
+    "distributor": "Universal Pictures",
+    "language": "engelska",
+    "subtitles": "svenska",
+    "director": "Cary Joji Fukunaga",
+    "actors": [
+      "Daniel Craig", "Rami Malek", "Naomie Harris", "Ana de Armas", "Léa Seydoux", "Ralph Fiennes", "Jeffrey Wright", "Christoph Waltz", "David Dencik"
+    ],
+    "description": "<p>Bond has left his job and enjoys a quiet life in Jamaica. However, it is short-lived when his old friend Felix Leiter from the CIA shows up and asks for help. The mission to rescue a kidnapped researcher turns out to be more treacherous than expected.</p>",
+    "images": [
+      "NoTimeToDie1.jpg"
+    ],
+    "youtubeTrailers": [
+      "https://youtu.be/BIhNsAtPbPI"
+    ],
+    "reviews": [
+      {
+        "source": "Rotten tomatoes",
+        "quote": "It's very long and packed with plot, but No Time to Die says goodbye to Daniel Craig's Bond with all the action and excitement franchise fans expect.",
+        "stars": 5,
+        "max": 5
+      },
+      {
+        "source": "KULTURBLOGGEN",
+        "quote": "No Time To Die - Daniel Craig's Bond has gone from clarity to clarity - for better or worse.",
+        "stars": 4,
+        "max": 5
+      },
+      {
+        "source": "SVT",
+        "quote": "My interest in the man waned long before Jason Bourne easily shouldered his mantle. But the latest (last?) Installation in the Bond franchise is surprisingly worth seeing ”. Fredrik Sahlin has seen a dignified end for an agent who has spent all his nine lives.",
+        "stars": 5,
+        "max": 5
+      }
+    ]
+  }
+   ,{
+    "title": "Uncharted",
+    "productionCountries": [
+      "Germany, Spain"
+    ],
+    "productionYear": 2021,
+    "length": 106,
+    "genre": ["Adventure", "Action"],
+    "distributor": "Sony Pictures",
+    "language": "engelska",
+    "subtitles": "svenska",
+    "director": "Ruben Fleischer",
+    "actors": [
+      "Tom Holland", "Mark Wahlberg", "Tati Gabrielle", "Antonio Banderas", "Sophia Ali"
+    ],
+    "description": "<p>The young and street-smart Nathan Drake tries to find a hidden treasure together with his partner Victor Sully Sullivan.</p>",
+    "images": [
+      "Uncharted1.jpg"
+    ],
+    "youtubeTrailers": [
+      "https://youtu.be/eHp3MbsCbMg"
+    ],
+    "reviews": [
+      {
+        "source": "Rotten tomatoes",
+        "quote": "It's all mildly amusing, mildly exciting and entirely routine, just as you might expect from a director such as the reliably faceless Ruben Fleischer (Venom), who manages to go from one hit to the next without ever showing any particular talent.",
+        "stars": 3,
+        "max": 5
+      },
+      {
+        "source": "KULTURBLOGGEN",
+        "quote": "Car chases and dangerous mountain climbs in all their glory - but it is the lovable characters that make their strongest mark on Uncharted 4 A Thief's End",
+        "stars": 4,
+        "max": 5
+      },
+      {
+        "source": "SVT",
+        "quote": "Exciting film with many surprises",
+        "stars": 4,
+        "max": 5
+      }
+    ]
+  }
+  ,{
+    "title": "The Batman",
+    "productionCountries": [
+      "USA"
+    ],
+    "productionYear": 2022,
+    "length": 175,
+    "genre": ["Drama", "Action"],
+    "distributor": "Warner Bros. Pictures",
+    "language": "engelska",
+    "subtitles": "svenska",
+    "director": "Matt Reeves",
+    "actors": [
+      "Robert Pattinson", "Zoë Kravitz", "Paul Dano", "Jeffrey Wright", "John Turturro", "Peter Sarsgaard", "Andy Serkis", "Colin Farrell"
+    ],
+    "description": "<p>A serial killer tries to lure Gotham's criminals into a game of raging against the injustices where they occur. But in Batman's dark silhouette there is a penetrating gaze that methodically destroys the game for the underworl.</p>",
+    "images": [
+      "TheBatman1.jpg"
+    ],
+    "youtubeTrailers": [
+      "https://youtu.be/u34gHaRiBIU"
+    ],
+    "reviews": [
+      {
+   
+      }
+    ]
+  }
+]
+
