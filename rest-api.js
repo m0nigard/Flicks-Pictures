@@ -2,15 +2,7 @@
 const betterSqlite3 = require('better-sqlite3');
 
 // Connect to a SQLite database
-const db = betterSqlite3('./database/persons.sqlite3');
-
-// Perform a database query and get the results
-// 1. create a prepared statement (stmt)
-let stmt = db.prepare(`
-  SELECT * FROM persons;
-`);
-// 2. run the prepared statement and get all the data back
-let persons = stmt.all();
+const db = betterSqlite3('./database/cinema.sqlite3');
 
 //helper function to run queries
 function runQuery(response, params, sqlAsText, noArray = false) {
