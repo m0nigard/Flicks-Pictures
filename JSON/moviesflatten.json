@@ -1,0 +1,425 @@
+[
+  {
+    "title": "The Wolf of Wall Street",
+    "productionCountries": [
+      "USA"
+    ],
+    "productionYear": 2012,
+    "length": 180,
+    "genre": ["Comedy"],
+    "distributor": "Universal Pictures",
+    "language": "engelska",
+    "subtitles": "svenska",
+    "director": "Martin Scorsese",
+    "actors": [
+      "Leonardo DiCaprio",
+      "Margot Robbie",
+      "Jonah Hill"
+    ],
+    "description": "<p>Stockbroker Jordan Belforts goes from the American dream to total greed when he is transformed from an honest small trader into a corrupt stock market shark with the nickname The Wolf Of Wall Street. Money, power, women and drugs.</p>",
+    "images": [
+      "WolfOfTheWallStreet1.jpg"
+    ],
+    "youtubeTrailers": [
+      "https://youtu.be/iszwuX1AK6A"
+    ],
+    "reviews": [
+      {
+        "source": "NyTimes",
+        "quote": "The movie Leonardo DiCaprio should have gotten an Oscar for. His portrayal of the character is perfect. The movie is well-written, leaving no details out of the original story. Martin Scorsese never fails to impress. One of the only example where the movie is better than the book. The movie never gets boring, I could watch this anytime.",
+        "stars": 4,
+        "max": 5
+      },
+      {
+        "source": "IMDB",
+        "quote": "DiCaprio was great and all the others were great too",
+        "stars": 5,
+        "max": 5
+      },
+      {
+        "source": "IMDB",
+        "quote": "Best movie ever!",
+        "stars": 4,
+        "max": 5
+      }
+    ]
+  }
+   ,{
+    "title": "Interstellar",
+    "productionCountries": [
+      "USA, UK"
+    ],
+    "productionYear": 2014,
+    "length": 169,
+    "genre": ["Adventure", "Drama", "Sci-Fi"],
+    "distributor": "Warner Bros",
+    "language": "engelska",
+    "subtitles": "svenska",
+    "director": "Christopher Nolan",
+    "actors": [
+      "Ellen Burstyn",
+      "Matthew McConaughey",
+      "Mackenzie Foy"
+    ],
+    "description": "<p>A team of explorers travel through a wormhole in space in an attempt to ensure humanitys survival.</p>",
+    "images": [
+      "Interstellar1.jpg"
+    ],
+    "youtubeTrailers": [
+      "https://youtu.be/zSWdZVtXT7E"
+    ],
+    "reviews": [
+      {
+        "source": "Filmtipset",
+        "quote": "Christopher Nolans latest work is an epic science fiction story. It has picked up the right ingredients from films such as Stanley Kubriks 2001 - A Space Adventure, Ridley Scots Alien and Steven Spielbergs Close Contact of the Third Degree.",
+        "stars": 5,
+        "max": 5
+      },
+      {
+        "source": "MOVIEZINE",
+        "quote": "Interstellar takes us to a near future where the earths assets begin to run out. A group of scientists is given a crucial task - to travel to other star systems and explore if we have a future in space.",
+        "stars": 5,
+        "max": 5
+      },
+      {
+        "source": "SVT",
+        "quote": "Wide views in stimulating astronaut fantasy about black holes and new dimensions. A little too much quantum physical fig language, thinks Fredrik Sahlin who is still impressed.",
+        "stars": 4,
+        "max": 5
+      }
+    ]
+  }
+  
+   ,{
+    "title": "No Time to Die",
+    "productionCountries": [
+      "UK"
+    ],
+    "productionYear": 2020,
+    "length": 183,
+    "genre": ["Action", "Thriller"],
+    "distributor": "Universal Pictures",
+    "language": "engelska",
+    "subtitles": "svenska",
+    "director": "Cary Joji Fukunaga",
+    "actors": [
+      "Daniel Craig", "Rami Malek", "Naomie Harris", "Ana de Armas", "Léa Seydoux", "Ralph Fiennes", "Jeffrey Wright", "Christoph Waltz", "David Dencik"
+    ],
+    "description": "<p>Bond has left his job and enjoys a quiet life in Jamaica. However, it is short-lived when his old friend Felix Leiter from the CIA shows up and asks for help. The mission to rescue a kidnapped researcher turns out to be more treacherous than expected.</p>",
+    "images": [
+      "NoTimeToDie1.jpg"
+    ],
+    "youtubeTrailers": [
+      "https://youtu.be/BIhNsAtPbPI"
+    ],
+    "reviews": [
+      {
+        "source": "Rotten tomatoes",
+        "quote": "Its very long and packed with plot, but No Time to Die says goodbye to Daniel Craigs Bond with all the action and excitement franchise fans expect.",
+        "stars": 5,
+        "max": 5
+      },
+      {
+        "source": "KULTURBLOGGEN",
+        "quote": "No Time To Die - Daniel Craigs Bond has gone from clarity to clarity - for better or worse.",
+        "stars": 4,
+        "max": 5
+      },
+      {
+        "source": "SVT",
+        "quote": "My interest in the man waned long before Jason Bourne easily shouldered his mantle. But the latest (last?) Installation in the Bond franchise is surprisingly worth seeing ”. Fredrik Sahlin has seen a dignified end for an agent who has spent all his nine lives.",
+        "stars": 5,
+        "max": 5
+      }
+    ]
+  }
+   ,{
+    "title": "Uncharted",
+    "productionCountries": [
+      "Germany, Spain"
+    ],
+    "productionYear": 2021,
+    "length": 106,
+    "genre": ["Adventure", "Action"],
+    "distributor": "Sony Pictures",
+    "language": "engelska",
+    "subtitles": "svenska",
+    "director": "Ruben Fleischer",
+    "actors": [
+      "Tom Holland", "Mark Wahlberg", "Tati Gabrielle", "Antonio Banderas", "Sophia Ali"
+    ],
+    "description": "<p>The young and street-smart Nathan Drake tries to find a hidden treasure together with his partner Victor Sully Sullivan.</p>",
+    "images": [
+      "Uncharted1.jpg"
+    ],
+    "youtubeTrailers": [
+      "https://youtu.be/eHp3MbsCbMg"
+    ],
+    "reviews": [
+      {
+        "source": "Rotten tomatoes",
+        "quote": "Its all mildly amusing, mildly exciting and entirely routine, just as you might expect from a director such as the reliably faceless Ruben Fleischer (Venom), who manages to go from one hit to the next without ever showing any particular talent.",
+        "stars": 3,
+        "max": 5
+      },
+      {
+        "source": "KULTURBLOGGEN",
+        "quote": "Car chases and dangerous mountain climbs in all their glory - but it is the lovable characters that make their strongest mark on Uncharted 4 A Thiefs End",
+        "stars": 4,
+        "max": 5
+      },
+      {
+        "source": "SVT",
+        "quote": "Exciting film with many surprises",
+        "stars": 4,
+        "max": 5
+      }
+    ]
+  }
+  ,{
+    "title": "The Batman",
+    "productionCountries": [
+      "USA"
+    ],
+    "productionYear": 2022,
+    "length": 175,
+    "genre": ["Drama", "Action"],
+    "distributor": "Warner Bros. Pictures",
+    "language": "engelska",
+    "subtitles": "svenska",
+    "director": "Matt Reeves",
+    "actors": [
+      "Robert Pattinson", "Zoë Kravitz", "Paul Dano", "Jeffrey Wright", "John Turturro", "Peter Sarsgaard", "Andy Serkis", "Colin Farrell"
+    ],
+    "description": "<p>A serial killer tries to lure Gothams criminals into a game of raging against the injustices where they occur. But in Batmans dark silhouette there is a penetrating gaze that methodically destroys the game for the underworl.</p>",
+    "images": [
+      "TheBatman1.jpg"
+    ],
+    "youtubeTrailers": [
+      "https://youtu.be/u34gHaRiBIU"
+    ],
+    "reviews": [
+      {
+   
+      }
+    ]
+  },
+   {
+    "title": "Jackass Forever",
+    "productionCountries": [
+      "USA"
+    ],
+    "productionYear": 2022,
+    "length": 95,
+    "genre": [
+      "Documentary",
+      "Action",
+      "Comedy"
+    ],
+    "distributor": "Paramount Pictures Studios",
+    "language": "english",
+    "subtitles": "english",
+    "director": "Jeff Tremaine",
+    "actors": [
+      "Johnny Knoxville",
+      "Steve-O",
+      "Chris Pontius"
+    ],
+    "description": "<p>Celebrating the joy of being back together with your best friends and a perfectly executed shot to the dingdong, the original jackass crew return for another round of hilarious, wildly absurd, and often dangerous displays of comedy with a little help from some exciting new cast.</p>",
+    "images": [
+      "jackass1.jpg"
+    ],
+    "Trailer": "https://youtu.be/FNq-QT2Jpng",
+    "reviews": [
+      {
+        "source": "Sydsvenskan",
+        "quote": "A successful comeback of the stunt gang",
+        "stars": 4,
+        "max": 5
+      },
+      {
+        "source": "Svenska Dagbladet",
+        "quote": "The film never deviates from the 20-year-old concept",
+        "stars": 4,
+        "max": 5
+      },
+      {
+        "source": "DN",
+        "quote": "Sure as hell its time for the laughter comeback?",
+        "stars": 3,
+        "max": 5
+      }
+    ]
+  },
+  {
+    "title": "Marry Me",
+    "productionCountries": [
+      "USA"
+    ],
+    "productionYear": 2022,
+    "length": 112,
+    "genre": [
+      "Comedy",
+      "Music",
+      "Romance"
+    ],
+    "distributor": "Universal Pictures",
+    "language": "english",
+    "subtitles": "english",
+    "director": "Kat Coiro",
+    "actors": [
+      "Jennifer Lopez",
+      "Owen Wilson",
+      "Maluma"
+    ],
+    "description": "<p>Music superstars Kat Valdez and Bastian are getting married before a global audience of fans. But when Kat learns, seconds before her vows, that Bastian has been unfaithful, she decides to marry Charlie, a stranger in the crowd, instead.</p>",
+    "images": [
+      "marry_me1.jpg"
+    ],
+    "Trailer": "https://youtu.be/Ebv9_rNb5Ig",
+    "reviews": [
+      {
+        "source": "Aftonbladet",
+        "quote": "A fairy-tale-like easy-going romantic comedy",
+        "stars": 3,
+        "max": 5
+      },
+      {
+        "source": "Filmtopp",
+        "quote": "its a worthwhile romantic comedy",
+        "stars": 3,
+        "max": 5
+      }
+    ]
+  },
+  {
+    "title": "Scream",
+    "productionCountries": [
+      "USA"
+    ],
+    "productionYear": 2022,
+    "length": 114,
+    "genre": [
+      "Horror",
+      "Mystery",
+      "Thriller"
+    ],
+    "distributor": "Paramount Pictures",
+    "language": "english",
+    "subtitles": "english",
+    "director": "Matt Bettinelli-Olpin, Tyler Gillett",
+    "actors": [
+      "Neve Campbell",
+      "Courtney Cox",
+      "David Arquette"
+    ],
+    "description": "<p>Twenty-five years after the original series of murders in Woodsboro, a new Ghostface emerges, and Sidney Prescott must return to uncover the truth.</p>",
+    "images": [
+      "scream1.jpg"
+    ],
+    "Trailer": "https://youtu.be/beToTslH17s",
+    "reviews": [
+      {
+        "source": "DN",
+        "quote": "New Scream flashes to the original - but lacks its charm",
+        "stars": 3,
+        "max": 5
+      },
+      {
+        "source": "Svenska Dagbladet",
+        "quote": "The turn of the Tiktok generation to be torn apart",
+        "stars": 4,
+        "max": 5
+      },
+      {
+        "source": "Sydsvenskan",
+        "quote": "Scream is smart, stylish and entertaining",
+        "stars": 4,
+        "max": 5
+      }
+    ]
+  },
+  {
+    "title": "Clifford the big red dog",
+    "productionCountries": [
+      "USA"
+    ],
+    "productionYear": 2022,
+    "length": 96,
+    "genre": [
+      "Adventure",
+      "Comedy",
+      "Family"
+    ],
+    "distributor": "Paramount Pictures",
+    "language": "english",
+    "subtitles": "english",
+    "director": "Walt Becker",
+    "actors": [
+      "Darby Camp",
+      "Jack Whitehall",
+      "Izaac Wang"
+    ],
+    "description": "<p>A young girls love for a tiny puppy named Clifford makes the dog grow to an enormous size.</p>",
+    "images": [
+      "clifford1.jpg"
+    ],
+    "Trailer": "https://youtu.be/4zH5iYM4wJo",
+    "reviews": [
+      {
+        "source": "Filmparadiset",
+        "quote": "a family film with a really lovely old-fashioned feeling",
+        "stars": 3,
+        "max": 5
+      },
+      {
+        "source": "Filmtopp",
+        "quote": "Predictable family coziness that knows its target audience",
+        "stars": 2,
+        "max": 5
+      }
+    ]
+  },
+  {
+    "title": "Death on the Nile",
+    "productionCountries": [
+      "England"
+    ],
+    "productionYear": 2022,
+    "length": 127,
+    "genre": [
+      "Crime",
+      "Drama",
+      "Mystery"
+    ],
+    "distributor": "20th Century Studios",
+    "language": "english",
+    "subtitles": "english",
+    "director": "Kenneth Branagh",
+    "actors": [
+      "Tom Bateman",
+      "Annette Bening",
+      "Kenneth Branagh"
+    ],
+    "description": "<p>While on vacation on the Nile, Hercule Poirot must investigate the murder of a young heiress.</p><p>Belgian sleuth Hercule Poirots vacation aboard a glamorous river steamer turns into a terrifying search for a murderer when a picture-perfect couples idyllic honeymoon is tragically cut short.</p>",
+    "images": [
+      "death_on_the_nile1.jpg"
+    ],
+    "Trailer": "https://youtu.be/dZRqB0JLizw",
+    "reviews": [
+      {
+        "source": "Svenska Dagbladet",
+        "quote": "Unsuccessful attempt to heat up classics",
+        "stars": 2,
+        "max": 5
+      },
+      {
+        "source": "DN",
+        "quote": "Wouldnt it fit better on the TV couch?",
+        "stars": 2,
+        "max": 5
+      }
+    ]
+  }
+]
+
