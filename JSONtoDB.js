@@ -5,21 +5,25 @@ const betterSqlite3 = require('better-sqlite3');
 const db = betterSqlite3('./database/cinema.sqlite3');
 
 // Collect movie data from nested JSON into Array
-const arrayData = collectData(require('./JSON/moviesflatten.json'))
+const arrayData = collectData(require('./JSON/movies_edit.json'))
 
 // Build SQL statement and transfer to DB
 DBtransfer(arrayData, 'Movie')
 
 function DBtransfer(arrayData, ...tables) {
-  if (tables[0] === 'Movie') {
-    sql = `
+  let sql
+
+  for (let i = 0; i < arrayData.length; i++) {
+    sql = ""
+
+    if (tables[0] === 'Movie') {
+      sql = `
     INSERT INTO ${tables[0]} 
     (title, productionYear, minuteLength, language, description, 
       distributor, languageSubtitle, director, youtubeTrailer, genre, imagePath)
-    VALUES ('
-  `
-    //PROBLEM: -->' i JSON-filerna skapar SQL syntax error
-    for (let i = 0; i < 1; i++) {
+    VALUES ('`
+
+      //PROBLEM: -->' i JSON-filerna skapar SQL syntax error
       sql += arrayData[i][0] + "', '"
       sql += arrayData[i][2] + "', "
       sql += arrayData[i][3]
@@ -31,12 +35,12 @@ function DBtransfer(arrayData, ...tables) {
       sql += arrayData[i][12] + "', '"
       sql += arrayData[i][4] + "', '"
       sql += arrayData[i][11] + "');"
+      console.log(sql)
     }
-    console.log(sql)
-  }
 
-  let stmt = db.prepare(sql)
-  console.log(stmt.run())
+    let stmt = db.prepare(sql)
+    console.log(stmt.run())
+  }
 }
 
 
