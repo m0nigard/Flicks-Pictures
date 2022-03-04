@@ -165,6 +165,8 @@ main {
 /* Clickable movie posters under Movies page */
 .movie-poster {
   width: 30%;
+  border: 1px solid black;
+  margin: 5px;
 }
 
 .movie-poster:hover {
