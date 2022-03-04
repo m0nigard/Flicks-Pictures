@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Monoton&family=Roboto&display=swap");
 /*
 font-family: 'Monoton', cursive;
 font-family: 'Roboto', sans-serif;
@@ -24,7 +24,8 @@ font-family: 'Roboto', sans-serif;
   top: 20px;
 }
 
-.login-button:link, .login-button:visited {
+.login-button:link,
+.login-button:visited {
   text-decoration: none;
   color: white;
 }
@@ -33,18 +34,19 @@ font-family: 'Roboto', sans-serif;
   border-bottom: 3px solid white;
 }
 
-h1, h2 {
+h1,
+h2 {
   padding-bottom: 10px;
 }
 
-h1.title {  
-  font-family: 'Monoton', cursive;
+h1.title {
+  font-family: "Monoton", cursive;
   font-size: 2.5rem;
   text-shadow: -3px 3px maroon;
 }
 
 body {
-  background-image: url('/image/bg.jpg');
+  background-image: url("/image/bg.jpg");
   background-size: cover;
   background-attachment: fixed;
   background-position: center center;
@@ -52,7 +54,7 @@ body {
   min-height: 100vh;
   flex-direction: column;
   color: white;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 /* Body background image color overlay effect */
@@ -76,7 +78,8 @@ header {
   margin-bottom: 10px;
 }
 
-header, footer {
+header,
+footer {
   text-align: center;
   opacity: 0.8;
 }
@@ -117,7 +120,8 @@ main {
   padding: 0 10px;
 }
 
-.movie-scroller, .main-middle-container {
+.movie-scroller,
+.main-middle-container {
   width: 850px;
   max-width: 95%;
   border-radius: 5px;
@@ -132,7 +136,7 @@ main {
 /* Container to align: main-content, screenings-today */
 .main-middle-container {
   margin: 0 auto;
-  display:flex;
+  display: flex;
   flex-direction: row;
 }
 
@@ -153,7 +157,7 @@ main {
 }
 
 .movies {
-  display:flex;
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
@@ -164,7 +168,7 @@ main {
 }
 
 .movie-poster:hover {
-  box-shadow:0 0 8px 3px white;
+  box-shadow: 0 0 8px 3px white;
   border: 1px solid white;
 }
 
@@ -197,5 +201,10 @@ footer {
     order: 1;
     margin-top: 10px;
     margin-right: 0;
+  }
+
+  /* Clickable movie posters under Movies page */
+  .movie-poster {
+    width: 45%;
   }
 }
