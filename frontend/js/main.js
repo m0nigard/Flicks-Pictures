@@ -50,7 +50,7 @@ async function router() {
   // run the productLister function (in another file)
   // if the route is '/partials/products.html';
   switch (route) {
-    case '/partials/movies.html':
+    case '/partials/movies.html': start()
     // Run method  from movies.js
   }
 }
