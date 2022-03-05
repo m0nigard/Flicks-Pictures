@@ -1,8 +1,10 @@
-// Import the better-sqlite3 module
-const betterSqlite3 = require('better-sqlite3');
+// Import password encryptor
+const passwordEncryptor = require('./passwordEncryptor');
 
-// Connect to a SQLite database
-const db = betterSqlite3('./database/cinema.sqlite3');
+const userTable = 'Customer';
+const passwordField = 'password';
+
+let db;
 
 //helper function to run queries
 function runQuery(response, params, sqlAsText, noArray = false) {
@@ -28,7 +30,9 @@ function runQuery(response, params, sqlAsText, noArray = false) {
 
 //export the function as a node.js module for use in other .js files
 //This function is the core of the rest-api
-module.exports = function setupRESTapi(app) {
+module.exports = function setupRESTapi(app, dbConnection) {
+  db = dbConnection;
+
   //get all the tables and views in the db except for sqlite generated
   let tablesAndViews = db.prepare(`
   SELECT name, type FROM sqlite_schema WHERE (type = 'table' OR type = 'view') AND name NOT LIKE 'sqlite_%';
@@ -68,6 +72,12 @@ module.exports = function setupRESTapi(app) {
     app.post('/api/' + name, (request, response) => {
       //do not allow id's to be sent manually (auto incremented id in db)
       delete request.body.id
+
+      // If post to user table, encrypt pw in message body
+      if (name === userTable) {
+        req.body[passwordField] = passwordEncryptor(req.body[passwordField]);
+      }
+
       runQuery(response, request.body, `
         INSERT INTO ${name} (${Object.keys(request.body)}) VALUES (${Object.keys(request.body).map(x => ':' + x)})
       `)
@@ -76,6 +86,11 @@ module.exports = function setupRESTapi(app) {
 
     //add put and patch (update) routes
     let putNpatchFunc = (request, response) => {
+      // If post to user table, encrypt pw in message body
+      if (name === userTable) {
+        req.body[passwordField] = passwordEncryptor(req.body[passwordField]);
+      }
+
       runQuery(response, { ...request.body, ...request.params }, `
         UPDATE ${name} SET ${Object.keys(request.body).map(x => x + ' = :' + x)} WHERE id = :id
       `)

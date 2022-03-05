@@ -1,3 +1,7 @@
+// Import the better-sqlite3 module & connect to SQLite database
+const betterSqlite3 = require('better-sqlite3');
+const db = betterSqlite3('./database/cinema.sqlite3');
+
 //port for web server
 const port = 3000
 
@@ -15,6 +19,10 @@ app.use(express.json({ limit: '100MB' }))
 //start the web server
 app.listen(3000, () => console.log('Listening on http://localhost:' + port))
 
+// Import the login.js function and call it
+const login = require('./login.js');
+login(app, db);
+
 //import the restapi function from the rest-api.js file
 const setupRESTapi = require('./rest-api.js')
-setupRESTapi(app)
+setupRESTapi(app, db)
