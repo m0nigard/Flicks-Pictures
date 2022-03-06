@@ -75,7 +75,7 @@ module.exports = function setupRESTapi(app, dbConnection) {
 
       // If post to user table, encrypt pw in message body
       if (name === userTable) {
-        req.body[passwordField] = passwordEncryptor(req.body[passwordField]);
+        request.body[passwordField] = passwordEncryptor(request.body[passwordField]);
       }
 
       runQuery(response, request.body, `
@@ -86,9 +86,9 @@ module.exports = function setupRESTapi(app, dbConnection) {
 
     //add put and patch (update) routes
     let putNpatchFunc = (request, response) => {
-      // If post to user table, encrypt pw in message body
+      // If put/patch to user table, encrypt pw in message body
       if (name === userTable) {
-        req.body[passwordField] = passwordEncryptor(req.body[passwordField]);
+        request.body[passwordField] = passwordEncryptor(request.body[passwordField]);
       }
 
       runQuery(response, { ...request.body, ...request.params }, `
