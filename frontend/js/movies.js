@@ -15,14 +15,21 @@ async function getData(restRoute) {
 function renderList(cssSelector, list) {
   //build HTML container
   let html = ''
+  let counter = 0
 
   list.forEach(element => {
     //console.log(element.imagePath)
     let image = '/image/images-movies/' + element.imagePath
     let title = element.title
-    html += '<img class="movie-poster" src="' + image + '" alt="' + title + '">'
+    html += '<img class="movie-poster" src="' + image + '" alt="' + title + '" onclick="testFunc('+ counter + ')" </>'
+    // onclick="testfunc()"
   });
   document.querySelector(cssSelector).innerHTML = html;
+}
+
+function testFunc(title){
+  window.location="movie-details"
+  console.log("hej " + title)
 }
 
 async function start() {
