@@ -52,7 +52,7 @@ async function router() {
   switch (route) {
     case '/partials/movies.html': start()
     // Run method  from movies.js
-    case '/partials/movie-details.html': startMD()
+    case '/partials/movie-details.html':
   }
 }
 
