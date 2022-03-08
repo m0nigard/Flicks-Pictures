@@ -156,7 +156,7 @@ main {
   background-color: aqua;
 }
 
-.movie_header_class{
+.movie_header_class {
   display: flex;
   padding: 0;
   margin: 0;
@@ -169,11 +169,37 @@ main {
   justify-content: space-between;
 }
 
+.movie-details-image {
+  width: 30%;
+  margin-right: 2%;
+  float: left;
+}
+
+.movie-desc {
+  display: inline;
+}
+
+.movie-desc-details {
+  float: left;
+  display: inline-flex;
+}
+
+.youtubeEmbed {
+  width: 100%;
+}
+iframe {
+  width: 100%;
+}
+
 /* Clickable movie posters under Movies page */
 .movie-poster {
   width: 30%;
   border: 1px solid black;
   margin: 5px;
+}
+
+a > img:only-child {
+  display: inline-block;
 }
 
 .movie-poster:hover {
