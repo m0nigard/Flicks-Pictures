@@ -163,6 +163,22 @@ main {
   justify-content: space-between;
 }
 
+.movie_filter_selectors{
+  min-width: auto;
+  margin: 0 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+#id_age_group_form{
+  display: flex;
+  margin-right: 2%;
+}
+
+#id_date_filter_form{
+  display: flex;
+}
+
 .movies {
   display: flex;
   flex-wrap: wrap;

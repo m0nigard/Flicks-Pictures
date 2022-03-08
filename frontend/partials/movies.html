@@ -1,22 +1,31 @@
 <article>
   <header class="movie_header_class">
     <h1>Movies</h1>
-    <form>
-      <label for="age_group">Age:</label>
-      <select name="age_groups" class="age_group_selector_class" onchange="selectboxHandler(this)">
-        <option value="all">All</option>
-        <option value="kids">Kids (7)</option>
-        <option value="youth">Youth (11)</option>
-        <option value="adult">Adult (15)</option>
-      </select>
-    </form>
+    <div class="movie_filter_selectors">
+      <form id="id_age_group_form">
+        <label for="age_group">Age:</label>
+        <select name="age_groups" onchange="selectboxHandler(this)">
+          <option value="all">All</option>
+          <option value="kids">Kids (7)</option>
+          <option value="youth">Youth (11)</option>
+          <option value="adult">Adult (15)</option>
+        </select>
+      </form>
+      <form id="id_date_filter_form">
+        <label for="date">Date:</label>
+        <select name="date_filter" onchange="dateSelectboxHandler(this)">
+          <option value="today">Today</option>
+          <option value="2022-04-23">2022-04-23</option>
+        </select>
+      </form>
+    </div>
   </header>
 
   <div class="movies">
     <!-- Placeholder items. Will be created by js.
     Js code should create <img class="movie-poster invisible"> to a number divisible by 3
     to make second row align nicely-->
-    <p> hello</p>
+    <p> Loading movies...</p>
     <script src="/movies.js"></script>
   </div>
 </article>
