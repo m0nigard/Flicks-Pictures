@@ -1,12 +1,13 @@
 <article>
   <header class="movie_header_class">
     <h1>Movies</h1>
-    <form action="">
+    <form>
       <label for="age_group">Age:</label>
-      <select name="age_groups">
+      <select name="age_groups" class="age_group_selector_class" onchange="selectboxHandler(this)">
         <option value="all">All</option>
-        <option value="kids">Kids</option>
-        <option value="adult">Adult</option>
+        <option value="kids">Kids (7)</option>
+        <option value="youth">Youth (11)</option>
+        <option value="adult">Adult (15)</option>
       </select>
     </form>
   </header>
