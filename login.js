@@ -1,4 +1,6 @@
 const session = require('express-session');
+const store = require('better-express-store');
+
 const passwordEncryptor = require('./passwordEncryptor');
 
 const passwordField = 'password';
@@ -10,7 +12,8 @@ module.exports = function (app, db) {
     secret: 'ChocolatePuddingOtterPancakeDilemma',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: 'auto' }
+    cookie: { secure: 'auto' },
+    store: store({ dbPath: './database/cinema.sqlite3' })
   }));
 
   // Setting up /api/login routes to allow log in/out

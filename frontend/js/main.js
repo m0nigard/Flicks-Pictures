@@ -2,6 +2,7 @@
 
 // Listener to direct to Router for navigation
 document.querySelector('body').addEventListener('click', function (event) {
+  console.log('big listener');
   let aTag = event.target.closest('a');
   if (!aTag) { return; }
 
@@ -18,6 +19,9 @@ document.querySelector('body').addEventListener('click', function (event) {
 
   // Push to browser history stack
   history.pushState(null, null, href);
+
+  // Don't route on # links, but put in history
+  if (href === '#') { return; }
 
   router();
 });
@@ -59,3 +63,4 @@ async function router() {
 window.addEventListener('popstate', router);
 
 router();
+setupLoggedInUser();   // Function from userLogin.js to find logged on user on page start
