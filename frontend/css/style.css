@@ -162,10 +162,55 @@ main {
   background-color: aqua;
 }
 
+.movie_header_class {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  justify-content: space-between;
+}
+
+.movie_filter_selectors{
+  min-width: auto;
+  margin: 0 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+#id_age_group_form{
+  display: flex;
+  margin-right: 2%;
+}
+
+#id_date_filter_form{
+  display: flex;
+}
+
 .movies {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+.movie-details-image {
+  width: 30%;
+  margin-right: 2%;
+  float: left;
+}
+
+.movie-desc {
+  display: inline;
+}
+
+.movie-desc-details {
+  float: left;
+  display: inline-flex;
+}
+
+.youtubeEmbed {
+  width: 100%;
+}
+iframe {
+  width: 100%;
 }
 
 /* Clickable movie posters under Movies page */
@@ -173,6 +218,10 @@ main {
   width: 30%;
   border: 1px solid black;
   margin: 5px;
+}
+
+a > img:only-child {
+  display: inline-block;
 }
 
 .movie-poster:hover {
