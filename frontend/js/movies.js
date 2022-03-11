@@ -3,6 +3,7 @@ let dataString = '/api/VW_MoviesWithActiveScreenings'
 //the month in Date-objects starts at 0, stupidly
 let currDate = new Date(2022, 3, 22)
 let fwCurrDate = new Date(currDate)
+let currDateSelectorVal
 
 async function getData(restRoute) {
   //get the data from the rest route
@@ -58,7 +59,7 @@ async function processData(dataString, selectorValueString) {
   let processedData = (await getData(dataString))
 
   //if date is picked, filter accordingly
-  //else, filter all movies
+  //else, show all movies on age group
   if (!!selectorValueString) {
     let screeningData = (await getData('/api/Screening'))
     let newProcessedData = Array()
@@ -88,13 +89,12 @@ function ageGroupSelectBoxHandler(selector) {
       break
     case 'youth': dataString = '/api/VW_MoviesAG_11'
       break
-    default: dataString = '/api/VW_MoviesWithActiveScreenings'
-      break
   }
-  processData(dataString)
+  processData(dataString, currDateSelectorVal)
 }
 
 //handle the datepicker being changed
 function datePickerHandler(selector) {
-  processData(dataString, (selector.value).toString())
+  currDateSelectorVal = (selector.value).toString()
+  processData(dataString, currDateSelectorVal)
 }
