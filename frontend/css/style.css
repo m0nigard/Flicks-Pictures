@@ -191,16 +191,27 @@ main {
 .movie-details-image {
   width: 30%;
   margin-right: 2%;
+  padding-top: 10px;
   float: left;
+  position: relative;
 }
 
 .movie-desc {
+  
   display: inline;
+  
 }
 
 .movie-desc-details {
+  position: relative;
   float: left;
-  display: inline-flex;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.movie-desc-table{
+  text-align: left;
+  border-collapse: collapse;
 }
 
 .youtubeEmbed {
