@@ -2,7 +2,6 @@
 
 // Listener to direct to Router for navigation
 document.querySelector('body').addEventListener('click', function (event) {
-  console.log('big listener');
   let aTag = event.target.closest('a');
   if (!aTag) { return; }
 

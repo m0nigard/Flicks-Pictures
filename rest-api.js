@@ -81,7 +81,6 @@ module.exports = function setupRESTapi(app, dbConnection) {
       runQuery(response, request.body, `
         INSERT INTO ${name} (${Object.keys(request.body)}) VALUES (${Object.keys(request.body).map(x => ':' + x)})
       `)
-      response.json(stmt.run(request.body))
     })
 
     //add put and patch (update) routes
@@ -103,7 +102,6 @@ module.exports = function setupRESTapi(app, dbConnection) {
       runQuery(response, request.params, `
       DELETE FROM ${name} WHERE id = :id;
       `)
-      response.json(stmt.run(request.params))
     })
   }
 
