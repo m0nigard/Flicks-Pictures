@@ -48,17 +48,19 @@ form[name="login"] {
   padding: 5px 20px;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input[type="email"] {
   width: 200px;
 }
 
 label {
-
+  display: block;
 }
 
 label span {
+  display: block;
   font-family: 'Roboto', sans-serif;
-  width: 100px;
+  font-size: 1rem;
+  width: 200px;
 }
 
 input[type="submit"], input[type="button"] {

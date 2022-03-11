@@ -1,4 +1,5 @@
 @import url('/css/style-login.css');
+@import url('/css/style-utils.css');
 @import url("https://fonts.googleapis.com/css2?family=Monoton&family=Roboto&display=swap");
 /*
 font-family: 'Monoton', cursive;
@@ -156,10 +157,6 @@ main {
   border-radius: 5px;
   margin-right: 10px;
   border: 2px solid maroon;
-}
-
-.article1 {
-  background-color: aqua;
 }
 
 .movie_header_class {

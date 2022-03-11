@@ -1,3 +1,6 @@
+// Frontend login script. Requires toast from utils.js
+
+// Listener for Login/Logout button top right of page
 document.querySelector('.open-login-button').addEventListener('click', async (event) => {
   event.preventDefault();
   loginButtonElement = document.querySelector('.open-login-button');
@@ -11,44 +14,134 @@ document.querySelector('.open-login-button').addEventListener('click', async (ev
   }
 });
 
+// Renders Window to fill with Login/Register form
 function renderLoginWindow() {
-  console.log('login');
-
   // Create div to cast "shadow" over page and act as container for login box
   let loginOverlay = document.createElement('div');
   loginOverlay.classList.add('login-overlay');
+  let loginContainer = document.createElement('div');
+  loginContainer.classList.add('login-container');
 
   // Display login
   document.body.appendChild(loginOverlay);
+  loginOverlay.appendChild(loginContainer);
 
   // Add listener to cancel login on click outside login box
   loginOverlay.addEventListener('click', event => {
     if (event.target.className.includes('login-overlay')) { document.body.removeChild(loginOverlay); }
   });
+  renderLoginForm(loginOverlay, loginContainer);
+}
 
-  loginOverlay.innerHTML = `
-  <div class="login-container">
+// Renders Register form in Login/Register Window
+function renderRegisterForm(loginOverlay, loginContainer) {
+  loginContainer.style.height = '440px';
+  loginContainer.innerHTML = `
+    <form name="register">
+      <h1>Register</h1>
+      <label>
+        <span>Username: </span><input required name="username" type="text">
+      </label>
+      <label>
+        <span>First Name: </span><input required name="firstName" type="text">
+      </label>
+      <label>
+        <span>Last Name: </span><input required name="lastName" type="text">
+      </label>
+      <label>
+        <span>Email: </span><input required name="email" type="email">
+      </label>
+      <label>
+        <span>Password: </span><input required name="password" type="password">
+      </label>
+      <label>
+        <span>Repeat Password: </span><input required name="passwordRepeated" type="password">
+      </label>
+      <span>
+        <input type="submit" value="Register" class="login-button">
+        <input type="button" value="Cancel" class="login-button">
+      </span>
+    </form>
+    <span class="login-message"></span>
+    <div class="flex-bottom">
+      <p>Already registered? <a href="#" class="login-to-register">Click here!</a></p>
+    </div>
+  `;
+
+  document.querySelector('.login-to-register').addEventListener('click', event => {
+    renderLoginForm(loginOverlay, loginContainer);  // Change from register to login form
+  });
+
+  document.querySelector('input[value="Cancel"]').addEventListener('click', (event) => {
+    event.preventDefault();
+    document.body.removeChild(loginOverlay);
+  });
+
+  document.querySelector('form[name="register"]').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    let formElements = document.forms.register.elements;
+
+    // Store register details in requestBody
+    let requestBody = {};
+    for (let element of formElements) {
+      if (element.type === 'submit' || element.type === 'button') { continue; }
+      requestBody[element.name] = element.value;
+    }
+
+    if (requestBody.password !== requestBody.passwordRepeated) {
+      document.querySelector('.login-message').innerHTML = 'Passwords does not match!';
+      return;
+    }
+    delete requestBody.passwordRepeated;
+
+    // Attempt to Register, store response in result
+    let result = {};
+    try {
+      result = await (await fetch('/api/customer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(requestBody)
+      })).json();
+    } catch (error) {
+      console.log(error);
+    }
+
+    // Incorrect login
+    if (!result || result._error) {
+      document.querySelector('.login-message').innerHTML = 'Registration failed';
+      return;
+    }
+
+    launchToast(`Account created!`);
+    renderLoginForm(loginOverlay, loginContainer);
+  });
+}
+
+function renderLoginForm(loginOverlay, loginContainer, newUser = false) {
+  loginContainer.style.height = '300px';
+  loginContainer.innerHTML = `
     <form name="login">
       <h1>Login</h1>
-
       <label>
         <span>Username: </span><input required name="username" type="text">
       </label>
       <label>
         <span>Password: </span><input required name="password" type="password">
       </label>
-
       <span>
         <input type="submit" value="Login" class="login-button">
         <input type="button" value="Cancel" class="login-button">
       </span>
     </form>
-    <span class="login-message"></span>
+    <span class="login-message">${newUser ? 'Account created!' : ''}</span>
     <div class="flex-bottom">
-      <p>Not registered? <a>Click here</a></p>
+      <p>Not registered? <a href="#" class="login-to-register">Click here</a></p>
     </div>
-  </div>
   `;
+
+  document.querySelector('.login-to-register').addEventListener('click', event => {
+    renderRegisterForm(loginOverlay, loginContainer);   // Change from login to register form
+  });
 
   document.querySelector('input[value="Cancel"]').addEventListener('click', (event) => {
     event.preventDefault();
@@ -81,20 +174,18 @@ function renderLoginWindow() {
       console.log(error);
     }
 
-    console.log(result);
-
     // Incorrect login
     if (!result || result._error) {
       document.querySelector('.login-message').innerHTML = 'Invalid login';
       return;
     }
 
-    // Show "logged in" top right
-    // Show "My bookings"
     document.body.removeChild(loginOverlay);  // Destroy login window
 
+    // Show "logged in" top right
     document.querySelector('.logged-on-user').innerHTML = result.firstName + ' ' + result.lastName + ' |';
     document.querySelector('.open-login-button').innerHTML = 'Logout';
+    launchToast(`Welcome, ${result.firstName}!`);
   });
 }
 
