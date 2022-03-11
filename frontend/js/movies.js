@@ -1,6 +1,6 @@
 //stack: db (sqlite) <--> backend (index.js) <--> restapi (rest-api.js) <--> frontend (index.html + style.css + this)
 let dateSelect = 'all'
-let dataString = '/api/Movie'
+let dataString = '/api/VW_MoviesWithActiveScreenings'
 
 async function getData(restRoute) {
   //get the data from the rest route
@@ -12,15 +12,17 @@ async function getData(restRoute) {
 }
 
 //rendering array of obj to HTML
+//rendering array of obj to HTML
 function renderList(cssSelector, list) {
+  console.log(list);
   //build HTML container
   let html = ''
+  let counter = 0
 
   list.forEach(element => {
-    //console.log(element.imagePath)
     let image = '/image/images-movies/' + element.imagePath
     let title = element.title
-    html += '<img class="movie-poster" src="' + image + '" alt="' + title + '">'
+    html += `<a href="/movie-details?id=${element.id}" class="movie-link"><img class="movie-poster" src="${image}" alt="${title}"></a>`
   });
   document.querySelector(cssSelector).innerHTML = html;
 }
@@ -32,6 +34,7 @@ async function start() {
 async function processData(dataString) {
   //fetch data, convert to strings and render selectbox
   let processedData = (await getData(dataString))
+
   if (dateSelect !== 'all') {
     let screeningData = (await getData('/api/Screening'))
     //console.log(JSON.stringify(screeningData))
@@ -49,11 +52,12 @@ async function processData(dataString) {
   } else {
     renderList('.movies', processedData)
   }
+
 }
 
 function selectboxHandler(selector) {
   switch (selector.value) {
-    case 'all': dataString = '/api/Movie'
+    case 'all': dataString = '/api/VW_MoviesWithActiveScreenings'
       break
     case 'kids': dataString = '/api/VW_MoviesAG_7'
       break
@@ -61,7 +65,7 @@ function selectboxHandler(selector) {
       break
     case 'youth': dataString = '/api/VW_MoviesAG_11'
       break
-    default: dataString = '/api/Movie'
+    default: dataString = '/api/VW_MoviesWithActiveScreenings'
       break
   }
   processData(dataString)
