@@ -40,6 +40,14 @@ function makeMenuChoiceActive(route) {
 
 // Page router
 async function router() {
+  // Get URL params that can be send to other pages
+  let url = document.URL;
+  let searchParams;
+  if (url.includes('?')) {
+    let paramsString = url.substring(url.indexOf('?') + 1);
+    searchParams = new URLSearchParams(paramsString);
+  }
+
   let route = location.pathname;
   makeMenuChoiceActive(route);
   // transform route to be a path to a partial
@@ -54,9 +62,12 @@ async function router() {
   // run the productLister function (in another file)
   // if the route is '/partials/products.html';
   switch (route) {
-    case '/partials/movies.html': start()
-    // Run method  from movies.js
+    case '/partials/movies.html':
+      start();
+      break;
     case '/partials/movie-details.html':
+      startMD(searchParams);  // On the other side, retrieve with: params.get('id')
+      break;
   }
 }
 

@@ -212,6 +212,10 @@ iframe {
 
 /* Clickable movie posters under Movies page */
 .movie-poster {
+  width: 100%;
+}
+
+.movie-link {
   width: 30%;
   border: 1px solid black;
   margin: 5px;
@@ -221,7 +225,7 @@ a > img:only-child {
   display: inline-block;
 }
 
-.movie-poster:hover {
+.movie-link:hover {
   box-shadow: 0 0 8px 3px white;
   border: 1px solid white;
 }
@@ -258,7 +262,8 @@ footer {
   }
 
   /* Clickable movie posters under Movies page */
-  .movie-poster {
+
+  .movie-link {
     width: 45%;
   }
 }
