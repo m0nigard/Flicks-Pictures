@@ -1,6 +1,8 @@
-//stack: db (sqlite) <--> backend (index.js) <--> restapi (rest-api.js) <--> frontend (index.html + style.css + this)
-let dateSelect = 'all'
 let dataString = '/api/VW_MoviesWithActiveScreenings'
+//for real dates, set currDate = new Date()
+//the month in Date-objects starts at 0, stupidly
+let currDate = new Date(2022, 3, 22)
+let fwCurrDate = new Date(currDate)
 
 async function getData(restRoute) {
   //get the data from the rest route
@@ -12,13 +14,9 @@ async function getData(restRoute) {
 }
 
 //rendering array of obj to HTML
-//rendering array of obj to HTML
 function renderList(cssSelector, list) {
-  console.log(list);
   //build HTML container
   let html = ''
-  let counter = 0
-
   list.forEach(element => {
     let image = '/image/images-movies/' + element.imagePath
     let title = element.title
@@ -27,22 +25,47 @@ function renderList(cssSelector, list) {
   document.querySelector(cssSelector).innerHTML = html;
 }
 
+//top level func for movies.js
 async function start() {
+  setDates()
   processData('/api/VW_MoviesWithActiveScreenings')
 }
 
-async function processData(dataString) {
+//set max and min dates for the datepicker
+function setDates() {
+  fwCurrDate.setDate(fwCurrDate.getDate() + (4 * 7))
+  document.querySelector('#date_selector').max =
+    dateStringFormatter(fwCurrDate.getFullYear() + '-' + (fwCurrDate.getMonth() + 1) + '-' + fwCurrDate.getDate())
+  document.querySelector('#date_selector').min =
+    dateStringFormatter(currDate.getFullYear() + '-' + (currDate.getMonth() + 1) + '-' + currDate.getDate())
+}
+
+//format date to string 
+function dateStringFormatter(dateString) {
+  if ((currDate.getMonth() + 1) >= 10 && currDate.getDay() < 10) {
+    dateString = dateString.slice(0, 8) + '0' + dateString.slice(8)
+  } else if (currDate.getDate() >= 10 && (currDate.getMonth() + 1) < 10) {
+    dateString = dateString.slice(0, 5) + '0' + dateString.slice(5)
+  } else if (currDate.getDate() < 10 && (currDate.getMonth() + 1) < 10) {
+    dateString = dateString.slice(0, 5) + '0' + dateString.slice(5)
+    dateString = dateString.slice(0, 8) + '0' + dateString.slice(8)
+  }
+  return dateString
+}
+
+async function processData(dataString, selectorValueString) {
   //fetch data, convert to strings and render selectbox
   let processedData = (await getData(dataString))
 
-  if (dateSelect !== 'all') {
+  //if date is picked, filter accordingly
+  //else, filter all movies
+  if (!!selectorValueString) {
     let screeningData = (await getData('/api/Screening'))
-    //console.log(JSON.stringify(screeningData))
     let newProcessedData = Array()
     for (let x in processedData) {
       for (let y in screeningData) {
         if (processedData[x].id === screeningData[y].movieId) {
-          if (JSON.stringify(screeningData[y].date).includes(dateSelect)) {
+          if (JSON.stringify(screeningData[y].date).includes(selectorValueString)) {
             newProcessedData.push(processedData[x])
           }
         }
@@ -52,10 +75,10 @@ async function processData(dataString) {
   } else {
     renderList('.movies', processedData)
   }
-
 }
 
-function selectboxHandler(selector) {
+//handle the selectbox for age group being changed
+function ageGroupSelectBoxHandler(selector) {
   switch (selector.value) {
     case 'all': dataString = '/api/VW_MoviesWithActiveScreenings'
       break
@@ -71,15 +94,7 @@ function selectboxHandler(selector) {
   processData(dataString)
 }
 
-function dateSelectboxHandler(selector) {
-  switch (selector.value) {
-    case 'all': dateSelect = 'all'
-      break
-    case 'today': dateSelect = '2022-04-22'
-      break
-    case '2022-04-23': dateSelect = '2022-04-23'
-      break
-    default: dateSelect = 'all'
-  }
-  processData(dataString)
+//handle the datepicker being changed
+function datePickerHandler(selector) {
+  processData(dataString, (selector.value).toString())
 }

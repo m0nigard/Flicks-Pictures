@@ -5,7 +5,7 @@
     <div class="movie_filter_selectors">
       <form id="id_age_group_form">
         <label for="age_group">Age:</label>
-        <select name="age_groups" onchange="selectboxHandler(this)">
+        <select name="age_groups" onchange="ageGroupSelectBoxHandler(this)">
           <option value="all">All</option>
           <option value="kids">Kids (7)</option>
           <option value="youth">Youth (11)</option>
@@ -14,11 +14,7 @@
       </form>
       <form id="id_date_filter_form">
         <label for="date">Date:</label>
-        <select name="date_filter" onchange="dateSelectboxHandler(this)">
-          <option value="all">All</option>
-          <option value="today">Today</option>
-          <option value="2022-04-23">2022-04-23</option>
-        </select>
+        <input type="date" id="date_selector" onchange="datePickerHandler(this)">
       </form>
     </div>
   </header>
