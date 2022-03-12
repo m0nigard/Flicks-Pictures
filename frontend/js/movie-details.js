@@ -11,6 +11,7 @@ function renderMovieDetails(cssSelector, obj) {
   let youtubeID = "null"
 
   try{
+    youtubeID = obj.youtubeTrailer.substring(16)
     let genresJson = JSON.parse(obj.genres)
     let actorsJson = JSON.parse(obj.actors)
     let prodcJson = JSON.parse(obj.productionCountries)
