@@ -7,9 +7,19 @@ let id = 0;
 function renderMovieDetails(cssSelector, obj) {
   //build HTML container
   let html = ''
-  let youtubeID = obj.youtubeTrailer.substring(16)
+  let outputGenres = "null", outputActors = "null", outputProdc = "null"
+  let youtubeID = "null"
 
   try{
+    let genresJson = JSON.parse(obj.genres)
+    let actorsJson = JSON.parse(obj.actors)
+    let prodcJson = JSON.parse(obj.productionCountries)
+  
+    outputGenres = jsonFormatter(genresJson)
+    outputActors = jsonFormatter(actorsJson)
+    outputProdc = jsonFormatter(prodcJson)
+  }catch{(console.error("Error, Some JSON data is missing.."))}
+
       html += `
       <iframe
       id="video"
@@ -21,7 +31,7 @@ function renderMovieDetails(cssSelector, obj) {
 
     <img class="movie-details-image" src="./image/images-movies/${obj.imagePath}">
     <div class="movie-desc">
-    <p><h1>${obj.title} (${obj.productionYear}</h1></p>
+    <p><h1>${obj.title} (${obj.productionYear})</h1></p>
     <p>${obj.description}</p>
     </br><p>${obj.ageGroup}+</p>
       </div>
@@ -33,11 +43,11 @@ function renderMovieDetails(cssSelector, obj) {
           </tr>
           <tr>
             <th>Genre:</th>
-            <td>${obj.genres}</td>
+            <td>${outputGenres}</td>
           </tr>
           <tr>
             <th>Actors:</th>
-            <td>${obj.actors}</td>
+            <td>${outputActors}</td>
           </tr>
           <tr>
             <th>Length:</th>
@@ -53,13 +63,26 @@ function renderMovieDetails(cssSelector, obj) {
           </tr>
           <tr>
             <th>Production countries:</th>
-            <td>${obj.productionCountries}</td>
+            <td>${outputProdc}</td>
           </tr>
         </table> 
         </div>
       `
-    }catch{(console.log("Some attributes could not be loaded by the API"))}
-  document.querySelector(cssSelector).innerHTML = html;
+      
+      document.querySelector(cssSelector).innerHTML = html;
+}
+
+//custom method to format json data to more readable format for html display
+function jsonFormatter(jsonData){
+  let formattedJsonData = ""
+
+  for (let i = 0; i < jsonData.length; i++){
+    formattedJsonData += jsonData[i].name
+    if (i != jsonData.length - 1){
+      formattedJsonData += ", "
+    }
+  }
+  return formattedJsonData
 }
 
 async function startMD(params) {
