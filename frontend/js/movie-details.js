@@ -31,11 +31,17 @@ function renderMovieDetails(cssSelector, obj) {
       </iframe>
 
     <img class="movie-details-image" src="./image/images-movies/${obj.imagePath}">
-    <div class="movie-desc">
-    <p><h1>${obj.title} (${obj.productionYear})</h1></p>
+
+    <div class="movie_details_title">
+    <h2 class="movie_title">${obj.title} (${obj.productionYear})</h2>
+    <a class="m_details_book_tickets-button" href="/tickets?movieId=${obj.id}">Book tickets</a>
+    </div>
+    </br>
+
     <p>${obj.description}</p>
     </br><p>${obj.ageGroup}+</p>
-      </div>
+
+  
       <div class="movie-desc-details">
          <table class="movie-desc-table">
           <tr>

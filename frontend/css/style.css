@@ -1,6 +1,6 @@
-@import url('/css/style-login.css');
-@import url('/css/style-utils.css');
-@import url('/css/style-ticket.css');
+@import url("/css/style-login.css");
+@import url("/css/style-utils.css");
+@import url("/css/style-ticket.css");
 @import url("https://fonts.googleapis.com/css2?family=Monoton&family=Roboto&display=swap");
 /*
 font-family: 'Monoton', cursive;
@@ -42,8 +42,13 @@ font-family: 'Roboto', sans-serif;
 
 h1,
 h2 {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   padding-bottom: 10px;
+}
+
+h2.movie_title {
+  font-size: larger;
+  padding: 6px 0px;
 }
 
 h1.title {
@@ -92,7 +97,8 @@ footer {
   opacity: 0.8;
 }
 
-.logged-on-user, .login-header-delimiter {
+.logged-on-user,
+.login-header-delimiter {
   font-size: 1.2rem;
 }
 
@@ -179,19 +185,44 @@ main {
   justify-content: space-between;
 }
 
-.movie_filter_selectors{
+.movie_details_title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.m_details_book_tickets-button {
+  color: rgb(255, 255, 255);
+  background-color: black;
+  opacity: 1;
+  border-radius: 10px;
+  border: 2px solid rgb(46, 46, 46);
+  padding: 5px 20px;
+  text-decoration: none;
+
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+}
+
+.m_details_book_tickets-button:hover {
+  background-color: rgb(53, 53, 53);
+  border: 2px solid rgb(255, 255, 255);
+}
+
+.movie_filter_selectors {
   min-width: auto;
   margin: 0 0 auto;
   display: flex;
   justify-content: space-between;
 }
 
-#id_age_group_form{
+#id_age_group_form {
   display: flex;
   margin-right: 2%;
 }
 
-#id_date_filter_form{
+#id_date_filter_form {
   display: flex;
 }
 
@@ -209,12 +240,6 @@ main {
   position: relative;
 }
 
-.movie-desc {
-  
-  display: inline;
-  
-}
-
 .movie-desc-details {
   position: relative;
   float: left;
@@ -222,7 +247,7 @@ main {
   padding-top: 20px;
 }
 
-.movie-desc-table{
+.movie-desc-table {
   text-align: left;
   border-collapse: collapse;
 }
