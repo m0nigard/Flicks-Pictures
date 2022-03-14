@@ -171,8 +171,7 @@ main {
   color: whitesmoke;
   line-height: 1.5rem;
   flex: 1;
-  background-color: black;
-  opacity: 0.85;
+  background-color: rgba(0, 0, 0, 0.85);
   padding: 20px;
   border-radius: 5px;
   margin-right: 10px;
@@ -282,10 +281,9 @@ a > img:only-child {
 
 /* Container to the right of main-content */
 .screenings-today {
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.85);
   color: white;
-  opacity: 0.95;
-  padding: 20px;
+  padding: 20px 10px;
   border-radius: 5px;
   height: fit-content;
   border: 2px solid maroon;
@@ -294,12 +292,31 @@ a > img:only-child {
 }
 
 .screenings-today-auditorium {
-  margin: 8px 0;
+  padding: 4px 0;
 }
 
 .screenings-today-item {
-  border-bottom: 1px solid white;
-  border-top: 1px solid white;
+
+  margin-bottom: 2px;
+}
+
+.screenings-today-item a {
+  width: fit-content;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  white-space: nowrap;
+  display:block;
+  color: white;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  transition: border-bottom 1s;
+
+}
+
+.screenings-today-item a:hover {
+  font-weight: bolder;
+  border-bottom: 3px solid white;
 }
 
 footer {
@@ -320,6 +337,10 @@ footer {
     order: 1;
     margin-top: 10px;
     margin-right: 0;
+  }
+
+  .screenings-today {
+    width: 100%;
   }
 
   /* Clickable movie posters under Movies page */
