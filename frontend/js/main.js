@@ -78,3 +78,4 @@ window.addEventListener('popstate', router);
 
 router();
 setupLoggedInUser();   // Function from userLogin.js to find logged on user on page start
+loadTodayContainer();  // Loads today's screenings in the container to the right

@@ -37,29 +37,29 @@ function renderLoginWindow() {
 function renderRegisterForm(loginOverlay, loginContainer) {
   loginContainer.style.height = '440px';
   loginContainer.innerHTML = `
-    <input type="button" value=" X " class="close-button">
+    <input type="button" value=" X " class="m_details_book_tickets-button close-button">
     <form name="register">
       <h1>Register</h1>
       <label>
-        <span>Username: </span><input required name="username" type="text">
+        <span>Username: </span><input class="login-input" required name="username" type="text">
       </label>
       <label>
-        <span>First Name: </span><input required name="firstName" type="text">
+        <span>First Name: </span><input class="login-input" required name="firstName" type="text">
       </label>
       <label>
-        <span>Last Name: </span><input required name="lastName" type="text">
+        <span>Last Name: </span><input class="login-input" required name="lastName" type="text">
       </label>
       <label>
-        <span>Email: </span><input required name="email" type="email">
+        <span>Email: </span><input class="login-input" required name="email" type="email">
       </label>
       <label>
-        <span>Password: </span><input required name="password" type="password">
+        <span>Password: </span><input class="login-input" required name="password" type="password">
       </label>
       <label>
-        <span>Repeat Password: </span><input required name="passwordRepeated" type="password">
+        <span>Repeat Password: </span><input class="login-input" required name="passwordRepeated" type="password">
       </label>
       <span>
-        <input type="submit" value="Register" class="login-button">
+        <input type="submit" value="Register" class="m_details_book_tickets-button">
       </span>
     </form>
     <span class="login-message"></span>
@@ -120,17 +120,17 @@ function renderRegisterForm(loginOverlay, loginContainer) {
 function renderLoginForm(loginOverlay, loginContainer, newUser = false) {
   loginContainer.style.height = '300px';
   loginContainer.innerHTML = `
-    <input type="button" value=" X " class="close-button">
+    <input type="button" value=" X " class="close-button m_details_book_tickets-button">
     <form name="login">
       <h1>Login</h1>
       <label>
-        <span>Username: </span><input required name="username" type="text">
+        <span>Username: </span><input class="login-input" required name="username" type="text">
       </label>
       <label>
-        <span>Password: </span><input required name="password" type="password">
+        <span>Password: </span><input class="login-input" required name="password" type="password">
       </label>
       <span>
-        <input type="submit" value="Login" class="login-button">
+        <input type="submit" value="Login" class="m_details_book_tickets-button">
       </span>
     </form>
     <span class="login-message">${newUser ? 'Account created!' : ''}</span>
@@ -151,7 +151,6 @@ function renderLoginForm(loginOverlay, loginContainer, newUser = false) {
   // Login function inside listener
   document.querySelector('form[name="login"]').addEventListener('submit', async (event) => {
     event.preventDefault();
-    console.log('login button listener');
 
     let formElements = document.forms.login.elements;
 

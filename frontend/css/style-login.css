@@ -10,8 +10,7 @@
 }
 
 .login-container {
-  background:black;
-  opacity: 0.8;
+  background-color:rgba(0, 0, 0, 0.8);
   position: fixed;
   top: 50%;
   left: 50%;
@@ -28,7 +27,7 @@
   flex-direction: column;
 }
 
-form[name="login"] {
+form[name="login"], form[name="register"]  {
   flex: 1;
 }
 
@@ -40,42 +39,27 @@ form[name="login"] {
   justify-content: flex-end;
 }
 
-.login-button {
-  display: block;
-  color: white;
-  background-color: black;
-  opacity: 1;
-  border-radius: 20px;
-  padding: 5px 20px;
-}
-
-input[type="text"], input[type="password"], input[type="email"] {
+.login-input {
   width: 100%;
 }
 
-label {
+form[name="login"] > label, form[name="register"] > label {
   display: block;
 }
 
-label span {
+form[name="login"] label span, form[name="register"] label span {
   display: block;
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
   width: 200px;
 }
 
-input[type="submit"], input[type="button"] {
+form[name="login"] input[type="submit"], 
+form[name="login"] input[type="button"],
+form[name="register"] input[type="submit"] {
   margin: 10px 0;
   display: inline-block;
   letter-spacing: 2px;
-
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease 0s;
-}
-
-input[type="button"] {
-  display: inline-block;
-  float: inline-end;
 }
 
 .login-message {
@@ -94,7 +78,8 @@ a.login-to-register:hover {
   border-bottom: 3px solid white;
 }
 
-.close-button {
+input.close-button {
+  margin-top: 10px;
   font-weight: bolder;
   width: 30px;
   height: 30px;
@@ -104,5 +89,5 @@ a.login-to-register:hover {
   right: 10px;
   margin-right: 10px;
   color: white;
-  background-color: black;
+  padding: unset;
 }

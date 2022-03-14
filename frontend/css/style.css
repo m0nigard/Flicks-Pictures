@@ -1,10 +1,11 @@
 @import url("/css/style-login.css");
 @import url("/css/style-utils.css");
 @import url("/css/style-ticket.css");
-@import url("https://fonts.googleapis.com/css2?family=Monoton&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Monoton&family=Roboto&family=Sansita+Swashed:wght@400;500;600&display=swap");
 /*
 font-family: 'Monoton', cursive;
 font-family: 'Roboto', sans-serif;
+font-family: 'Sansita Swashed', cursive;
 */
 
 * {
@@ -40,13 +41,13 @@ font-family: 'Roboto', sans-serif;
   border-bottom: 3px solid white;
 }
 
-h1,
-h2 {
-  font-family: "Roboto", sans-serif;
+h1, h2, h3 {
+  font-family: 'Sansita Swashed', cursive;
   padding-bottom: 10px;
 }
 
 h2.movie_title {
+  font-family: 'Roboto', sans-serif;
   font-size: larger;
   padding: 6px 0px;
 }
@@ -288,6 +289,17 @@ a > img:only-child {
   border-radius: 5px;
   height: fit-content;
   border: 2px solid maroon;
+  min-width: 200px;
+  width: 25%;
+}
+
+.screenings-today-auditorium {
+  margin: 8px 0;
+}
+
+.screenings-today-item {
+  border-bottom: 1px solid white;
+  border-top: 1px solid white;
 }
 
 footer {
