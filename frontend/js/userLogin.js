@@ -37,6 +37,7 @@ function renderLoginWindow() {
 function renderRegisterForm(loginOverlay, loginContainer) {
   loginContainer.style.height = '440px';
   loginContainer.innerHTML = `
+    <input type="button" value=" X " class="close-button">
     <form name="register">
       <h1>Register</h1>
       <label>
@@ -59,7 +60,6 @@ function renderRegisterForm(loginOverlay, loginContainer) {
       </label>
       <span>
         <input type="submit" value="Register" class="login-button">
-        <input type="button" value="Cancel" class="login-button">
       </span>
     </form>
     <span class="login-message"></span>
@@ -72,7 +72,7 @@ function renderRegisterForm(loginOverlay, loginContainer) {
     renderLoginForm(loginOverlay, loginContainer);  // Change from register to login form
   });
 
-  document.querySelector('input[value="Cancel"]').addEventListener('click', (event) => {
+  document.querySelector('.close-button').addEventListener('click', (event) => {
     event.preventDefault();
     document.body.removeChild(loginOverlay);
   });
@@ -120,6 +120,7 @@ function renderRegisterForm(loginOverlay, loginContainer) {
 function renderLoginForm(loginOverlay, loginContainer, newUser = false) {
   loginContainer.style.height = '300px';
   loginContainer.innerHTML = `
+    <input type="button" value=" X " class="close-button">
     <form name="login">
       <h1>Login</h1>
       <label>
@@ -130,7 +131,6 @@ function renderLoginForm(loginOverlay, loginContainer, newUser = false) {
       </label>
       <span>
         <input type="submit" value="Login" class="login-button">
-        <input type="button" value="Cancel" class="login-button">
       </span>
     </form>
     <span class="login-message">${newUser ? 'Account created!' : ''}</span>
@@ -143,7 +143,7 @@ function renderLoginForm(loginOverlay, loginContainer, newUser = false) {
     renderRegisterForm(loginOverlay, loginContainer);   // Change from login to register form
   });
 
-  document.querySelector('input[value="Cancel"]').addEventListener('click', (event) => {
+  document.querySelector('.close-button').addEventListener('click', (event) => {
     event.preventDefault();
     document.body.removeChild(loginOverlay);
   });
@@ -182,9 +182,7 @@ function renderLoginForm(loginOverlay, loginContainer, newUser = false) {
 
     document.body.removeChild(loginOverlay);  // Destroy login window
 
-    // Show "logged in" top right
-    document.querySelector('.logged-on-user').innerHTML = result.firstName + ' ' + result.lastName + ' |';
-    document.querySelector('.open-login-button').innerHTML = 'Logout';
+    toggleHeaderLoggedIn(result.firstName, result.lastName)
     launchToast(`Welcome, ${result.firstName}!`);
   });
 }
@@ -223,6 +221,20 @@ async function setupLoggedInUser() {
   loggedIn = await getLoggedOnUser();
   if (loggedIn === null) { return; }
 
-  document.querySelector('.logged-on-user').innerHTML = loggedIn.firstName + ' ' + loggedIn.lastName + ' |';
+  toggleHeaderLoggedIn(loggedIn.firstName, loggedIn.lastName);
+}
+
+// Changes top right buttons, showing: name, bookings, logout
+function toggleHeaderLoggedIn(firstName, lastName) {
+  document.querySelectorAll('.login-header-delimiter').forEach(element => {
+    element.classList.remove('hidden');
+  });
+  document.querySelector('.open-bookings').classList.remove('hidden');
+  document.querySelector('.logged-on-user').innerHTML = firstName + ' ' + lastName + ' ';
   document.querySelector('.open-login-button').innerHTML = 'Logout';
+}
+
+// Changes top right buttons, hiding: bookings, showing: login
+function toggleHeaderLoggedOut() {
+
 }

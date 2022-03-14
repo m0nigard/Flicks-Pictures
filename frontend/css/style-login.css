@@ -41,6 +41,7 @@ form[name="login"] {
 }
 
 .login-button {
+  display: block;
   color: white;
   background-color: black;
   opacity: 1;
@@ -49,7 +50,7 @@ form[name="login"] {
 }
 
 input[type="text"], input[type="password"], input[type="email"] {
-  width: 200px;
+  width: 100%;
 }
 
 label {
@@ -79,4 +80,29 @@ input[type="button"] {
 
 .login-message {
   color: red;
+}
+
+a.login-to-register {
+  color: lightgrey;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  transition: border-bottom 1s;
+}
+
+a.login-to-register:hover {
+  color: white;
+  border-bottom: 3px solid white;
+}
+
+.close-button {
+  font-weight: bolder;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  border-radius: 50%;
+  top: 0;
+  right: 10px;
+  margin-right: 10px;
+  color: white;
+  background-color: black;
 }

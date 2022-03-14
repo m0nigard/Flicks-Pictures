@@ -16,14 +16,17 @@ font-family: 'Roboto', sans-serif;
 }
 
 .hidden {
-  visibility: none;
+  display: none;
 }
 
 /* Login button top-right */
 .login-header {
-  position: absolute;
-  right: 20px;
-  top: 20px;
+  align-self: flex-end;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  border-radius: 0 0 0px 10px;
+  border-bottom: 1px solid maroon;
+  border-left: 1px solid maroon;
 }
 
 .login-button:link,
@@ -77,8 +80,9 @@ body:before {
 
 header {
   background-color: black;
-  padding: 30px;
   margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 header,
@@ -87,8 +91,16 @@ footer {
   opacity: 0.8;
 }
 
-.logged-on-user {
+.logged-on-user, .login-header-delimiter {
   font-size: 1.2rem;
+}
+
+.logged-on-user {
+  font-style: italic;
+}
+
+nav.top-nav {
+  padding-bottom: 20px;
 }
 
 .top-nav a {
@@ -113,7 +125,7 @@ footer {
 .placeholder {
   width: 100%;
   height: 100%;
-  border: 2px solid maroon;
+  border: 2px solid rgba(233, 9, 9, 0.425);
   border-radius: 5px;
 }
 
@@ -273,8 +285,13 @@ footer {
   }
 
   /* Clickable movie posters under Movies page */
-
   .movie-link {
     width: 45%;
+  }
+
+  .login-header {
+    border-radius: 0;
+    border-left: 0;
+    width: 100%;
   }
 }
