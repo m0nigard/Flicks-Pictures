@@ -5,7 +5,7 @@ const db = betterSqlite3('./database/cinema.sqlite3');
 //port for web server
 const port = 3000
 
-//import express
+//import express & path
 const express = require('express')
 const path = require('path')
 
@@ -32,5 +32,9 @@ app.all('/partials/*', (req, res) => {
     res.status(404)
     res.set('Content-Type', 'text/html')
     res.sendFile(path.join(__dirname, 'frontend', 'partials', '404.html'))
+});
 
+app.all('*', (req, res) => {
+    res.set('Content-Type', 'text/html');
+    res.sendFile(path.join(__dirname, 'frontend', 'index.html'))
 });
