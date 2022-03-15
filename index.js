@@ -7,6 +7,7 @@ const port = 3000
 
 //import express
 const express = require('express')
+const path = require('path')
 
 //create web server using express 
 const app = express()
@@ -26,3 +27,9 @@ login(app, db);
 //import the restapi function from the rest-api.js file
 const setupRESTapi = require('./rest-api.js')
 setupRESTapi(app, db)
+
+app.all('/partials/*', (req, res) => {
+    res.set('Content-Type', 'text/html');
+    res.sendFile(path.join(__dirname, 'frontend', 'partials', '404.html'))
+
+});
