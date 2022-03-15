@@ -29,7 +29,8 @@ const setupRESTapi = require('./rest-api.js')
 setupRESTapi(app, db)
 
 app.all('/partials/*', (req, res) => {
-    res.set('Content-Type', 'text/html');
+    res.status(404)
+    res.set('Content-Type', 'text/html')
     res.sendFile(path.join(__dirname, 'frontend', 'partials', '404.html'))
 
 });
