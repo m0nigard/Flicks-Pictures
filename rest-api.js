@@ -1,6 +1,9 @@
 // Import password encryptor
 const passwordEncryptor = require('./passwordEncryptor');
 
+// Import non-generic customized REST routes
+const specialRestRoutes = require('./rest-api-special');
+
 const userTable = 'Customer';
 const passwordField = 'password';
 
@@ -104,6 +107,9 @@ module.exports = function setupRESTapi(app, dbConnection) {
       `)
     })
   }
+
+  // Call specialRestRoutes module, inject app & runQuery into it
+  specialRestRoutes(app, runQuery, db);
 
   //add 404 route (will match this route if no other routes matches the request)
   app.all('/api/*', (request, response) => {

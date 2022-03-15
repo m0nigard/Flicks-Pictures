@@ -41,9 +41,14 @@ font-family: 'Sansita Swashed', cursive;
   border-bottom: 3px solid white;
 }
 
-h1, h2, h3 {
+h1, h2 {
   font-family: 'Sansita Swashed', cursive;
   padding-bottom: 10px;
+}
+
+h3 {
+  font-family: 'Sansita Swashed', cursive;
+  padding-bottom: 4px;
 }
 
 h2.movie_title {
@@ -139,7 +144,7 @@ nav.top-nav {
 
 /* Master-container to align the containers in the middle of the site: 
   [movie-scroller]
-  [main-middle-container] -> main-content, screenings-today */
+  [main-middle-container] -> main-content, current-screenings */
 main {
   flex: 1;
   display: flex;
@@ -160,7 +165,7 @@ main {
   margin-bottom: 10px;
 }
 
-/* Container to align: main-content, screenings-today */
+/* Container to align: main-content, current-screenings */
 .main-middle-container {
   margin: 0 auto;
   display: flex;
@@ -280,7 +285,7 @@ a > img:only-child {
 }
 
 /* Container to the right of main-content */
-.screenings-today {
+.current-screenings {
   background-color: rgba(0, 0, 0, 0.85);
   color: white;
   padding: 20px 10px;
@@ -291,16 +296,20 @@ a > img:only-child {
   width: 25%;
 }
 
-.screenings-today-auditorium {
+  .current-screenings-day:not(:first-child) {
+    padding-top: 3px;
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+  }
+
+.current-screenings-auditorium {
   padding: 4px 0;
 }
 
-.screenings-today-item {
-
+.current-screenings-item {
   margin-bottom: 2px;
 }
 
-.screenings-today-item a {
+.current-screenings-item a {
   width: fit-content;
   max-width: 100%;
   text-overflow: ellipsis;
@@ -314,7 +323,7 @@ a > img:only-child {
 
 }
 
-.screenings-today-item a:hover {
+.current-screenings-item a:hover {
   font-weight: bolder;
   border-bottom: 3px solid white;
 }
@@ -339,7 +348,7 @@ footer {
     margin-right: 0;
   }
 
-  .screenings-today {
+  .current-screenings {
     width: 100%;
   }
 
@@ -352,5 +361,10 @@ footer {
     border-radius: 0;
     border-left: 0;
     width: 100%;
+  }
+
+  /* Only show Today's screenings on small windows */
+  .current-screenings-day:not(:first-child) {
+    display: none;
   }
 }

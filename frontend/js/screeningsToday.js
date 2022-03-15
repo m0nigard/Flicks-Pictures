@@ -1,49 +1,67 @@
 // Loads today's screenings in the section to the right of the frontpage
 
-async function getTodaysScreenings() {
-  return await (await fetch('/api/VW_ScreeningsToday')).json();
+// Gets list of screenings for a date
+async function getScreeningsPerDate(dateString) {
+  return await (await fetch('/api/VW_ScreeningDetailsByDate/' + dateString)).json();
 }
 
-// Fills the 'Today' container with screenings for each auditorium
-async function drawTodayContainer(screeningsToday) {
-  let todayContainer = document.querySelector('.screenings-today');
-  let html = '<h2>Today</h2>';
+// Fills the 'Current Screenings' container with screenings for each auditorium
+async function drawTodayContainer(screeningsToday, headtitle) {
+  let currentScreeningsContainer = document.querySelector('.current-screenings');
+  let newDayContainer = document.createElement('div');
+  newDayContainer.classList.add('current-screenings-day');
+  currentScreeningsContainer.appendChild(newDayContainer);
 
-  // Sort screenings into Map depending on auditorium as key, arrays of screenings as value
-  const auditoriums = new Map();
-  let auditoriumArray = [];
-  for (element of screeningsToday) {
-    if (auditoriums.get(element.auditoriumId === undefined)) {
-      auditoriumArray = [element];
-      auditoriums.set(element.auditoriumId, auditoriumArray);
-    } else {
-      auditoriumArray = auditoriums.get(element.auditoriumId) || [];
-      auditoriumArray.push(element);
-      auditoriums.set(element.auditoriumId, auditoriumArray);
-    }
-  };
+  let html = `<h2>${headtitle}</h2>`;
 
-  // Loops map to create container for each auditorium and appends screening children
-  for (const [key, value] of auditoriums.entries()) {
+  if (screeningsToday.length === 0) {
     html += `
-    <div class="screenings-today-auditorium">
+      <div class="current-screenings-auditorium">
+      <p>No screenings this day</p>
+    `;
+  } else {
+    // Sort screenings into Map depending on auditorium as key, arrays of screenings as value
+    const auditoriums = new Map();
+    let auditoriumArray = [];
+    for (element of screeningsToday) {
+      if (auditoriums.get(element.auditoriumId === undefined)) {
+        auditoriumArray = [element];
+        auditoriums.set(element.auditoriumId, auditoriumArray);
+      } else {
+        auditoriumArray = auditoriums.get(element.auditoriumId) || [];
+        auditoriumArray.push(element);
+        auditoriums.set(element.auditoriumId, auditoriumArray);
+      }
+    };
+
+    // Loops map to create container for each auditorium and appends screening children
+    for (const [key, value] of auditoriums.entries()) {
+      html += `
+    <div class="current-screenings-auditorium">
     <h3>${value[0].auditoriumName}</h3>
     `;
 
-    value.forEach(element => {
-      html += `
-      <p class="screenings-today-item" title="${element.movieTitle}">
+      value.forEach(element => {
+        html += `
+      <p class="current-screenings-item" title="${element.movieTitle}">
         <a href="/tickets?screeningId=${element.id}">${element.date.substring(11)} - ${element.movieTitle}</a>
       </p>
       `;
-    });
-    html += '</div>';
+      });
+      html += '</div>';
+    }
   }
-  todayContainer.innerHTML = html;
+
+  newDayContainer.innerHTML += html;
 }
 
 // Start method
 async function loadTodayContainer() {
-  let screeningsToday = await getTodaysScreenings();
-  drawTodayContainer(screeningsToday);
+  let dateToday = new Date();
+  let dateTomorrow = new Date(dateToday.getTime() + 86400000);
+  let dateTodayStr = dateToday.toJSON().substring(0, 10);
+  let dateTomorrowStr = dateTomorrow.toJSON().substring(0, 10);
+
+  drawTodayContainer(await getScreeningsPerDate(dateTodayStr), 'Today');
+  drawTodayContainer(await getScreeningsPerDate(dateTomorrowStr), 'Tomorrow');
 }
