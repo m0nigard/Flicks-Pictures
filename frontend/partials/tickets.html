@@ -1,185 +1,95 @@
 <article class="ticket-body">
-  <h1>Tickets</h1>
-  <div class="datepicker">
-    <label>Choose date</label>
-    <input type="date" id="start" name="trip-start" value="2022-01-01" min="2022-03-01" max="2022-12-31">
-</div>
-
-<div class="movie-container">
-    <label>Pick Movie</label>
-    <select id="movie-ticket">
-        <option >Avengers : Endgame</option>
-        <option >Avengers : Startgame</option>
-        <option >Avengers : Hassan</option>
-        <option >Avengers : Bengt</option>
-    </select>
-</div>
-
-
-<ul class="showcase">
-    <li>
-        <div class="seat"></div>
-        <small>N/A</small>
-    </li>
-    <li>
-        <div class="seat selected"></div>
-        <small>Selected</small>
-    </li>
-    <li>
-        <div class="seat occupied"></div>
-        <small>Occupied</small>
-    </li>
-    <li>
-        <div class="seat reserved"></div>
-        <small>Reserved</small>
-    </li>
-</ul>
-
-<div class="container-ticket">
-    <div class="screen"></div>
-    <div class="row">
-        <div class="seat occupied"></div>
-        <div class="seat occupied"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
+    <h1>Tickets</h1>
+    <div class="datepicker">
+        <label>Choose date</label>
+        <input type="date" id="ticket-datepicker">
     </div>
 
-    <div class="row">
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat occupied"></div>
-        <div class="seat occupied"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
+    <div class="movie-container">
+        <label>Pick Movie</label>
+        <select id="movie-ticket"></select>
     </div>
 
-    <div class="row">
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat occupied"></div>
-        <div class="seat occupied"></div>
-        <div class="seat occupied"></div>
-        <div class="seat occupied"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-    </div>
 
-    <div class="row">
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat occupied"></div>
-        <div class="seat occupied"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-    </div>
+    <ul class="showcase">
+        <li>
+            <div class="seat"></div>
+            <small>N/A</small>
+        </li>
+        <li>
+            <div class="seat selected"></div>
+            <small>Selected</small>
+        </li>
+        <li>
+            <div class="seat occupied"></div>
+            <small>Occupied</small>
+        </li>
+        <li>
+            <div class="seat reserved"></div>
+            <small>Reserved</small>
+        </li>
+    </ul>
 
-    <div class="row">
-        <div class="seat"></div>
-        <div class="seat occupied"></div>
-        <div class="seat occupied"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-    </div>
+    <div class="container-ticket"></div>
 
-    <div class="row">
-        <div class="seat"></div>
-        <div class="seat occupied"></div>
-        <div class="seat occupied"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-    </div>
+    <p class="text">
+        You have selected <span id="count">0</span> seats.
+    </p>
 
-    <div class="row">
-        <div class="seat"></div>
-        <div class="seat occupied"></div>
-        <div class="seat"></div>
-        <div class="seat occupied"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-    </div>
-</div>
+    <button class="button-book" id="confirm">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span> BUY TICKETS
+    </button>
 
-<p class="text">
-    You have selected <span id="count">0</span> seats.
-</p>
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
 
-<button class="button-book" id="confirm">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span> BUY TICKETS
-</button>
+            <p class="text">
+                You have reserved <span id="count2">0</span> seats, select ticket type.
+            </p>
 
-<div id="myModal" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close">&times;</span>
+            <div class="input-adult">
+                <label>Adult:</label>
+                <button type="button" id="sub" class="sub">-</button>
+                <input type="text" id="1" value="0" readonly class="quantity-field" />
+                <button type="button" id="add" class="add">+</button>
+            </div>
+            <div class="input-retired">
+                <label>Retired:</label>
+                <button type="button" id="sub2" class="sub">-</button>
+                <input type="text" id="2" value="0" readonly class="quantity-field" />
+                <button type="button" id="add2" class="add">+</button>
+            </div>
+            <div class="input-children">
+                <label>Child:</label>
+                <button type="button" id="sub3" class="sub">-</button>
+                <input type="text" id="3" value="0" readonly class="quantity-field" />
+                <button type="button" id="add3" class="add">+</button>
+            </div>
 
-        <p class="text">
-            You have reserved <span id="count2">0</span> seats, select ticket type.
-        </p>
+            <p class="text">
+                You have <span id="ticket-type-left">0</span> more to choose.
+            </p>
 
-        <div class="input-adult">
-            <label>Adult:</label>
-            <button type="button" id="sub" class="sub">-</button>
-            <input type="text" id="1" value="0" readonly class="quantity-field" />
-            <button type="button" id="add" class="add">+</button>
+            <article class="booking-info">
+                Date: <span id="booking-info-date">0</span>
+                <br><br>
+                Movie: <span id="booking-info-movie">0</span>
+                <br><br>
+                Total price: <span id="booking-info-totalprice">0</span> SEK
+            </article>
+
+            <button class="button-book" id="confirm-booking">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span> CONFIRM BOOKING
+            </button>
+
         </div>
-        <div class="input-retired">
-            <label>Retired:</label>
-            <button type="button" id="sub2" class="sub">-</button>
-            <input type="text" id="2" value="0" readonly class="quantity-field" />
-            <button type="button" id="add2" class="add">+</button>
-        </div>
-        <div class="input-children">
-            <label>Child:</label>
-            <button type="button" id="sub3" class="sub">-</button>
-            <input type="text" id="3" value="0" readonly class="quantity-field" />
-            <button type="button" id="add3" class="add">+</button>
-        </div>
-
-        <p class="text">
-            You have <span id="ticket-type-left">0</span> more to choose.
-        </p>
-        
-        <article class="booking-info">
-            Date: <span id="booking-info-date">0</span> 
-            <br><br>
-            Movie: <span id="booking-info-movie">0</span> 
-            <br><br>
-            Total price:  <span id="booking-info-totalprice">0</span> SEK
-        </article>
-
-        <button class="button-book" id="confirm-booking">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span> CONFIRM BOOKING
-        </button>
-    
     </div>
-</div>
 </article>
