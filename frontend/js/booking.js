@@ -1,5 +1,12 @@
 // Global values
-let selectedSeats = [];
+let selectedSeats = []; // Stores elements of selected seats (id found on selectedSeats[i].dataset.seatid)
+
+let ticketTypes;  // Store ticket type information from db and counts of seats
+let selectedTicketTypesCount = 0; // Store number of selected ticket types in modal
+let selectedScreening;  // Contains the currently selected screening from the dropdown
+
+let plusModalButtons;   // Plus button elements for ticket types in Modal
+let minusModalButtons;  // Minus button elements for ticket types in Modal
 
 // Get different ticket type prices
 async function getTicketType() {
@@ -7,24 +14,13 @@ async function getTicketType() {
 }
 
 // Get screening details to fill dropdown menu
-async function getScreeningsPerDate(dateString) {
+async function getScreeningDetailsPerDate(dateString) {
   return await (await fetch('/api/VW_ScreeningDetailsByDate/' + dateString)).json();
 }
 
 // Get screening details to fill dropdown menu
 async function getScreeningDetails(id) {
   return await (await fetch('/api/VW_ScreeningDetails/' + id)).json();
-}
-
-// Fills the dropdown menu with screenings of the picked date
-async function renderMovieSelect(dateStr) {
-  const screenings = await getScreeningsPerDate(dateStr);
-  const movieSelect = document.getElementById('movie-ticket');
-  let html = '';
-  screenings.forEach(element => {
-    html += `<option data-screening-id="${element.id}" value="${element.id}">${element.date.substring(11)} - ${element.auditoriumName} - ${element.movieTitle}</option>`;
-  });
-  movieSelect.innerHTML = html;
 }
 
 // Sets up datepicker element
@@ -40,10 +36,29 @@ function setupDatePicker() {
   });
 }
 
+// Fills the dropdown menu with screenings of the picked date
+async function renderMovieSelect(dateStr) {
+  if (dateStr === '') { return; }
+  const screenings = await getScreeningDetailsPerDate(dateStr);
+  const movieSelect = document.getElementById('movie-ticket');
+  let html = '';
+  screenings.forEach(element => {
+    html += `<option data-screening-id="${element.id}" value="${element.id}">${element.date.substring(11)} - ${element.auditoriumName} - ${element.movieTitle}</option>`;
+  });
+  movieSelect.innerHTML = html;
+
+  // Load first screening
+  if (screenings.length > 0) {
+    renderSeatMap(screenings[0].id);
+  }
+}
+
+// Draws the seat map canvas for seat selection
 async function renderSeatMap(screeningId) {
-  const screeningDetails = await getScreeningDetails(screeningId);
-  const allSeats = await JSON.parse(screeningDetails.allSeats);
+  selectedScreening = await getScreeningDetails(screeningId);
+  const allSeats = await JSON.parse(selectedScreening.allSeats);
   const seatMap = document.querySelector('.container-ticket');
+  seatMap.setAttribute('data-screeningid', selectedScreening.id)
   let html = '<div class="screen"></div>';
 
   // Sort Seats into Map depending on row as key, arrays of seats as value
@@ -70,241 +85,53 @@ async function renderSeatMap(screeningId) {
     html += '</div>';
   }
   seatMap.innerHTML = html;
-
-  refreshBookedSeats(screeningId);
-  //populateUI();
+  updateSelectedCount();  // Re-count selected seats (to 0)
+  refreshBookedSeats(screeningId);  // Mark any booked seats
 }
 
 // Refresh seat map to mark occupied seats
-async function refreshBookedSeats(screeningId) {
-  console.log('inside refresh');
-  const screeningDetails = await getScreeningDetails(screeningId);
+async function refreshBookedSeats() {
+  const screeningDetails = await getScreeningDetails(document.querySelector('.container-ticket').getAttribute('data-screeningid'));
   const seatsTaken = await JSON.parse(screeningDetails.seatsTaken) || [];
-
   seatsTaken.forEach(element => {
-    document.querySelector(`[data-seatid="${element.seatId}"]`).classList.add('occupied');
+    let seat = document.querySelector(`[data-seatid="${element.seatId}"]`)
+    if (seat.classList.contains('selected')) {
+      launchToast(`Seat ${element.number} on row ${element.row} was booked by someone else!`);
+      seat.classList.remove('selected');
+    }
+    seat.classList.add('occupied');
   });
 }
 
+// Run this on confirm button press
+async function setupTicketModal() {
+  ticketTypes = await getTicketType();
+  let ticketTypeHTML = '';
 
-
-
-async function loadBookingPage() {
-  const movieSelect = document.getElementById('movie-ticket');
-  movieSelect.addEventListener('change', (e) => {
-    // ticketPrice = +e.target.value;
-
-    renderSeatMap(e.target.value);
-    //setMovieData(e.target.selectedIndex, e.target.value);
-    //updateSelectedCount();
+  ticketTypes.forEach((element, index) => {
+    element.count = 0;
+    ticketTypes[ticketTypes[index].name] = ticketTypes[index];  // Name array items to be able to get ticketTypes['nameOfType'] later
+    ticketTypeHTML += `
+      <div class="input-adult">
+        <label class="input-ticket-type">${element.name}</label>
+        <button type="button" id="${'sub' + element.id}" class="sub" data-ticket-type-name="${element.name}" data-ticket-type-id="${element.id}">-</button>
+        <input type="text" id="${element.id}" value="0" readonly class="quantity-field" />
+        <button type="button" id="${'add' + element.id}" class="add" data-ticket-type-name="${element.name}" data-ticket-type-id="${element.id}">+</button>
+        <span class="ticket-type-price">${element.price}:-</span>
+      </div>
+    `;
   });
+  document.querySelector('.modal-ticket-types').innerHTML = ticketTypeHTML;
 
-  setupDatePicker();
-
-  let dateTodayStr = new Date().toJSON().substring(0, 10);
-  renderMovieSelect(dateTodayStr);
-
-  const ticketTypes = await getTicketType()
-
-  // When the user clicks on the button, open the modal
-  document.getElementById("confirm").addEventListener('click', async event => {
-    // If user not logged in, show login prompt instead (requires userLogin.js)
-    if (await getLoggedOnUser() === null) {
-      renderLoginWindow();
-      return;
-    }
-    modal.style.display = "block";  // Show Modal
-  });
-
-
-  ticketChildren = 65;
-  ticketAdult = 85;
-  ticketRetired = 75;
-  var totalAmountOfTickets = 0;
-  var ticketsLeftToPick = 0;
-
-
-  let plus = document.querySelectorAll('.add')
-  let minus = document.querySelectorAll('.sub')
-  const container = document.querySelector('.container-ticket');
-  const seats = document.querySelectorAll('.row .seat:not(.occupied');
-  const count = document.getElementById('count');
-  const count2 = document.getElementById('count2');
-  const count3 = document.getElementById('ticket-type-left');
-  const total = document.getElementById('booking-info-totalprice');
-
-
-
-  //populateUI();
-  //let ticketPrice = +movieSelect.value;
-
-  // Save selected movie index and price
-  function setMovieData(movieIndex, moviePrice) {
-    localStorage.setItem('selectedMovieIndex', movieIndex);
-    localStorage.setItem('selectedMoviePrice', moviePrice);
-  }
-
-  // update total and count
-  function updateSelectedCount() {
-    calculateTotalPrice();
-    selectedSeats = document.querySelectorAll('.row .seat.selected');
-
-    // Disables Confirm button if no seat is selected - NOTE: SHOULD DISABLE ANIMATION ON DISABLE
-    if (selectedSeats.length < 1) {
-      document.getElementById("confirm").disabled = true;
-    } else {
-      document.getElementById("confirm").disabled = false;
-    }
-
-    const seatsIndex = [...selectedSeats].map((seat) => [...seats].indexOf(seat));
-
-    localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex));
-
-    //copy selected seats into arr
-    // map through array
-    //return new array of indexes
-
-    const selectedSeatsCount = selectedSeats.length;
-
-    selectedSeatsCountCopy = selectedSeatsCount;
-
-    count.innerText = selectedSeatsCount;
-    count2.innerText = selectedSeatsCount;
-
-    ticketsLeftToPick = selectedSeatsCountCopy -= totalAmountOfTickets;
-    makeButtonsNonClickable(ticketsLeftToPick);
-    count3.innerText = ticketsLeftToPick;
-    total.innerText = totalPriceToPay;
-
-  }
-
-
-  function makeButtonsNonClickable(value) {
-    if (value <= 0) {
-      plus[0].disabled = true;
-      plus[1].disabled = true;
-      plus[2].disabled = true;
-    } else {
-      plus[0].disabled = false;
-      plus[1].disabled = false;
-      plus[2].disabled = false;
-    }
-  }
-
-
-  // get values from ticket plus and minus
-
-  function calculateTotalPrice() {
-    amountAdult = document.querySelectorAll('.quantity-field')[0].value;
-    amountRetired = document.querySelectorAll('.quantity-field')[1].value;
-    amountChild = document.querySelectorAll('.quantity-field')[2].value;
-
-    totpriceAdult = amountAdult * ticketAdult;
-    totpriceRetired = amountRetired * ticketRetired;
-    totpriceChild = amountChild * ticketChildren;
-
-    totalAmountOfTickets = parseInt(amountAdult) + parseInt(amountRetired) + parseInt(amountChild);
-
-    totalPriceToPay = totpriceAdult + totpriceRetired + totpriceChild;
-
-  }
-
-  // populateUI was here
-
-
-
-  // Movie select event
-
-  console.log(movieSelect);
-
-
-
-
-
-
-  // Seat click event
-  container.addEventListener('click', (e) => {
-    if (e.target.classList.contains('seat') && !e.target.classList.contains('occupied')) {
-      e.target.classList.toggle('selected');
-      console.log(e.target.dataset.seatid);
-      updateSelectedCount();
-    }
-  });
-
-
-  // intial count and total
-  updateSelectedCount();
-
-  // + and - for tickets
-  countNumAdult = 0;
-  countNumRetired = 0;
-  countNumChild = 0;
-
-  let quantity = document.querySelectorAll("quantity-field");
-
-
-  plus[0].addEventListener("click", function () {
-    countNumAdult += 1;
-    document.getElementById("1").value = countNumAdult;
-    updateSelectedCount();
-  });
-
-  plus[1].addEventListener("click", function () {
-    countNumRetired += 1;
-    document.getElementById("2").value = countNumRetired;
-    updateSelectedCount();
-
-  });
-
-  plus[2].addEventListener("click", function () {
-    countNumChild += 1;
-    document.getElementById("3").value = countNumChild;
-    updateSelectedCount();
-
-  });
-
-  minus[0].addEventListener("click", function () {
-    countNumAdult -= 1;
-    countNumAdult = countNumAdult < 0 ? 0 : countNumAdult;
-    document.getElementById("1").value = countNumAdult;
-    updateSelectedCount();
-  });
-
-  minus[1].addEventListener("click", function () {
-    countNumRetired -= 1;
-    countNumRetired = countNumRetired < 0 ? 0 : countNumRetired;
-    document.getElementById("2").value = countNumRetired;
-    updateSelectedCount();
-
-  });
-
-  minus[2].addEventListener("click", function () {
-    countNumChild -= 1;
-    countNumChild = countNumChild < 0 ? 0 : countNumChild;
-    document.getElementById("3").value = countNumChild;
-    updateSelectedCount();
-  });
-
-
-  // Make booking 
-  function createBooking() {
-
-  }
-
-
+  plusModalButtons = document.querySelectorAll('.add')
+  minusModalButtons = document.querySelectorAll('.sub')
+  setupModalButtonListeners(plusModalButtons, minusModalButtons);
 
   // För modal 
-  var modal = document.getElementById("myModal");
-
-
-
-  // Get the <span> element that closes the modal
-  var span = document.getElementsByClassName("close")[0];
-
-
+  const modal = document.getElementById("myModal");
 
   // When the user clicks on <span> (x), close the modal
-  span.onclick = function () {
+  document.getElementsByClassName("close")[0].onclick = function () {
     modal.style.display = "none";
   }
 
@@ -314,24 +141,145 @@ async function loadBookingPage() {
       modal.style.display = "none";
     }
   }
-
+  document.getElementById('confirm-booking').addEventListener('click', event => {
+    if (selectedTicketTypesCount === selectedSeats.length) { createBooking(); }
+  });
 }
 
-// get data from localstorage and populate ui
-function populateUI() {
-  const movieSelect = document.getElementById('movie-ticket');
-  const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'));
-  if (selectedSeats !== null && selectedSeats.length > 0) {
-    seats.forEach((seat, index) => {
-      if (selectedSeats.indexOf(index) > -1) {
-        seat.classList.add('selected');
-      }
+// Makes Add buttons unclickable when all ticket types for number of seats are selected
+function makeButtonsNonClickable(value) {
+  if (value <= 0) {
+    plusModalButtons.forEach(element => {
+      element.disabled = true;
+    });
+  } else {
+    plusModalButtons.forEach(element => {
+      element.disabled = false;
     });
   }
+}
 
-  const selectedMovieIndex = localStorage.getItem('selectedMovieIndex');
+// update total and count
+function updateSelectedCount() {
+  selectedSeats = document.querySelectorAll('.row .seat.selected');
 
-  if (selectedMovieIndex !== null) {
-    movieSelect.selectedIndex = selectedMovieIndex;
+  // Disables Confirm button if no seat is selected - NOTE: SHOULD DISABLE ANIMATION ON DISABLE
+  if (selectedSeats.length < 1) {
+    document.getElementById("confirm").disabled = true;
+  } else {
+    document.getElementById("confirm").disabled = false;
   }
+
+  let selectedSeatsCount = selectedSeats.length;
+  document.getElementById('count').innerText = selectedSeatsCount;
+  let ticketsLeftToPick = selectedSeatsCount - selectedTicketTypesCount;
+
+  makeButtonsNonClickable(ticketsLeftToPick);
+  calculateTotalPrice();
+}
+
+// Setup listeners for +/- buttons for ticket types in the Modal
+function setupModalButtonListeners(plus, minus) {
+  plus.forEach(element => {
+    element.addEventListener('click', (event) => {
+      // Increment count on Add button and store in TicketType object array
+      selectedTicketTypesCount++;
+      ticketTypes[element.dataset.ticketTypeName].count += 1;
+      document.getElementById(element.dataset.ticketTypeId).value = ticketTypes[element.dataset.ticketTypeName].count;
+      updateSelectedCount();
+    });
+  });
+  minus.forEach(element => {
+    element.addEventListener('click', (event) => {
+      // Increment count on Add button and store in TicketType object array
+      if (ticketTypes[element.dataset.ticketTypeName].count > 0) {
+        ticketTypes[element.dataset.ticketTypeName].count -= 1;
+        selectedTicketTypesCount--;
+      }
+      document.getElementById(element.dataset.ticketTypeId).value = ticketTypes[element.dataset.ticketTypeName].count;
+      updateSelectedCount();
+    });
+  });
+}
+
+function calculateTotalPrice() {
+  let totalPriceToPay = 0
+  let totalAmountOfTickets = 0;
+  ticketTypes.forEach(element => {
+    let totPrice = element.count * element.price;
+    document.getElementById(element.id).innerHTML = totPrice;
+    totalPriceToPay += totPrice;
+    totalAmountOfTickets += element.count;
+  });
+  renderTotalTickets(totalAmountOfTickets);
+  renderTotalPrice(totalPriceToPay);
+}
+
+function renderTotalTickets(totalAmountOfTickets) {
+  let ticketsLeft = selectedSeats.length - totalAmountOfTickets;
+  document.getElementById('count2').innerText = selectedSeats.length; // "You have reserved X seats, select ticket type. "
+  document.getElementById('ticket-type-left').innerText = ticketsLeft;  // "You have X more to choose"
+}
+
+function renderTotalPrice(totalPriceToPay) {
+  document.getElementById('booking-info-totalprice').innerText = totalPriceToPay || 0;
+}
+
+// Make booking 
+function createBooking() {
+  // 1. POST booking (date, customerId, screeningId)
+  // 2. A bookingId is returned
+  // 3. POST SeatTickets ([bookingId], ticketTypeId, seatId)
+  // 4. On response, show a confirmation 
+  let seatIdArr = []; let ticketTypeArr = [];
+  selectedSeats.forEach(element => {
+    seatIdArr.push(element.dataset.seatid);
+  });
+  ticketTypes.forEach(element => {
+    for (let i = 0; i < element.count; i++) {
+      ticketTypeArr.push(element.id);
+    }
+  });
+
+  console.log('CreateBooking');
+  console.log('-selectedSeats: ', selectedSeats);
+  console.log('-TicketTypes: ', ticketTypes);
+  console.log('-seatsArr: ', seatIdArr);
+  console.log('-TicketTypesArr: ', ticketTypeArr);
+  console.log('-screening: ', selectedScreening);
+}
+
+// Starter function for Tickets page
+async function loadBookingPage() {
+  setupTicketModal(); // Initialize ticket Modal (hidden before pressing 'BUY TICKETS')
+  setupDatePicker();
+  renderMovieSelect(new Date().toJSON().substring(0, 10));  // Fills dropdown menu with movies 
+
+  // Setup dropdown menu for Movie selection
+  const movieSelect = document.getElementById('movie-ticket');
+  movieSelect.addEventListener('change', (e) => {
+    renderSeatMap(e.target.value);
+  });
+
+  // Seat click event on seat map
+  const container = document.querySelector('.container-ticket');
+  container.addEventListener('click', (e) => {
+    if (e.target.classList.contains('seat') && !e.target.classList.contains('occupied')) {
+      e.target.classList.toggle('selected');
+      updateSelectedCount();
+    }
+  });
+
+  // When the user clicks on the button, open the modal
+  document.getElementById("confirm").addEventListener('click', async event => {
+    // If user not logged in, show login prompt instead (requires userLogin.js)
+    if (await getLoggedOnUser() === null) {
+      renderLoginWindow();
+      return;
+    }
+    document.getElementById("myModal").style.display = "block";  // Show Modal
+    document.getElementById('booking-info-date').innerHTML = selectedScreening.date;
+    document.getElementById('booking-info-movie').innerHTML = selectedScreening.movieTitle;
+    document.getElementById('booking-info-auditorium').innerHTML = selectedScreening.auditoriumName;
+  });
 }

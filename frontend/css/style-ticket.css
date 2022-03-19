@@ -22,6 +22,11 @@
   margin-left: 0px;
 }
 
+label.input-ticket-type {
+  display: inline-block;
+  width: 100px;
+}
+
 .input-adult{
   padding: 5px 13px 1px 5px;
   margin-left: 12px;
@@ -270,6 +275,7 @@ p.text span {
   padding: 20px;
   border: 1px solid #888;
   width: 40%; /* Could be more or less, depending on screen size */
+  min-width: 300px;
 }
 
 /* The Close Button */
