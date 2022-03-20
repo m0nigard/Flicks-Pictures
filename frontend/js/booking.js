@@ -226,11 +226,8 @@ function renderTotalPrice(totalPriceToPay) {
 }
 
 // Make booking 
-function createBooking() {
-  // 1. POST booking (date, customerId, screeningId)
-  // 2. A bookingId is returned
-  // 3. POST SeatTickets ([bookingId], ticketTypeId, seatId)
-  // 4. On response, show a confirmation 
+async function createBooking() {
+  // Prepare data to divide selected TicketTypes to the SeatTickets
   let seatIdArr = []; let ticketTypeArr = [];
   selectedSeats.forEach(element => {
     seatIdArr.push(element.dataset.seatid);
@@ -241,12 +238,35 @@ function createBooking() {
     }
   });
 
+  // Prepare body of POST 
+  let requestBody = {};
+  requestBody.seatTickets = [];
+  requestBody.booking = {
+    screeningId: selectedScreening.id
+  };
+  for (let i = 0; i < ticketTypeArr.length; i++) {
+    requestBody.seatTickets[i] = { ticketTypeId: ticketTypeArr[i], seatId: seatIdArr[i] }
+  }
+
+  // Send REST POST
+  let result = {};
+  try {
+    result = await (await fetch('/api/addBooking', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestBody)
+    })).json();
+  } catch (error) {
+    console.log(error);
+  }
+
   console.log('CreateBooking');
   console.log('-selectedSeats: ', selectedSeats);
   console.log('-TicketTypes: ', ticketTypes);
   console.log('-seatsArr: ', seatIdArr);
   console.log('-TicketTypesArr: ', ticketTypeArr);
   console.log('-screening: ', selectedScreening);
+  console.log('-result: ', result);
 }
 
 // Starter function for Tickets page
