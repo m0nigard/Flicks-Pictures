@@ -3,6 +3,10 @@
 
 // runQuery(response, params, sqlAsText, noArray = false)
 module.exports = function (app, runQueryFunction, db) {
+  // require funktion
+  const nodemailer = require("nodemailer");
+  const emailFunction = require('./email');
+
   app.get('/api/VW_ScreeningDetailsByDate/:date', (req, res) => {
 
     // Return Screening details filtered by date
@@ -71,12 +75,19 @@ module.exports = function (app, runQueryFunction, db) {
 
     // Return result
     if (errorResult !== undefined) {
+      console.log(errorResult)
       res.status(500);
       res.json(errorResult)
     } else {
       if (!bookingResult) {
+        console.log(errorResult)
         res.status(404);
       }
+      console.log(emailFunction);
+      emailFunction(req.session.user.email, nodemailer, req.body);
+      console.log("HEJ")
+      console.log(req.session.user.email);
+      console.log(req.body);
       res.json(bookingResult);
     }
   });

@@ -248,6 +248,8 @@ async function createBooking() {
     requestBody.seatTickets[i] = { ticketTypeId: ticketTypeArr[i], seatId: seatIdArr[i] }
   }
 
+  requestBody.booking.movieTitle = selectedScreening.movieTitle;
+
   // Send REST POST
   let result = {};
   try {
@@ -259,7 +261,7 @@ async function createBooking() {
   } catch (error) {
     console.log(error);
   }
-  
+
   renderConfirmation(requestBody, result);
   console.log('CreateBooking');
   console.log('-selectedSeats: ', selectedSeats);
@@ -279,7 +281,7 @@ async function renderConfirmation(requestBody, result) {
     const getProp = prop => obj => obj[prop];
     const getSeatId = getProp('seatId');
     const seats = requestBody.seatTickets.map(getSeatId);
-   
+
     html += `<article>
     <p>Thank you for booking! <br><br> </p>
     Booking id: <span id="confirmation-bookingId">${result.newBooking.lastInsertRowid} <br> </span>
@@ -289,7 +291,7 @@ async function renderConfirmation(requestBody, result) {
     </article>`
 
     document.getElementById('modal-book').innerHTML = html;
-    
+
   } else {
     document.getElementById('modal-book').innerHTML = "Something went wrong with the booking, try again!";
   }
