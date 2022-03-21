@@ -259,7 +259,8 @@ async function createBooking() {
   } catch (error) {
     console.log(error);
   }
-
+  
+  renderConfirmation(requestBody, result);
   console.log('CreateBooking');
   console.log('-selectedSeats: ', selectedSeats);
   console.log('-TicketTypes: ', ticketTypes);
@@ -267,6 +268,32 @@ async function createBooking() {
   console.log('-TicketTypesArr: ', ticketTypeArr);
   console.log('-screening: ', selectedScreening);
   console.log('-result: ', result);
+}
+
+// Booking confirmation, showing bookingId, MovieTitle, Date and which seats. 
+async function renderConfirmation(requestBody, result) {
+  if (!result._error) {
+    let html = '';
+
+    confirmedScreening = await getScreeningDetails(requestBody.booking.screeningId);
+    const getProp = prop => obj => obj[prop];
+    const getSeatId = getProp('seatId');
+    const seats = requestBody.seatTickets.map(getSeatId);
+   
+    html += `<article>
+    <p>Thank you for booking! <br><br> </p>
+    Booking id: <span id="confirmation-bookingId">${result.newBooking.lastInsertRowid} <br> </span>
+    Movie: <span id="confirmation-movie">${confirmedScreening.movieTitle} <br> </span>
+    Date: <span id="confirmation-date">${confirmedScreening.date} <br> </span>  
+    Ticket seats: <span id="confirmation-ticket">${seats}</span>
+    </article>`
+
+    document.getElementById('modal-book').innerHTML = html;
+    
+  } else {
+    document.getElementById('modal-book').innerHTML = "Something went wrong with the booking, try again!";
+  }
+
 }
 
 // Starter function for Tickets page
