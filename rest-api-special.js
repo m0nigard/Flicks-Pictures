@@ -83,11 +83,7 @@ module.exports = function (app, runQueryFunction, db) {
         console.log(errorResult)
         res.status(404);
       }
-      console.log(emailFunction);
       emailFunction(req.session.user.email, nodemailer, req.body);
-      console.log("HEJ")
-      console.log(req.session.user.email);
-      console.log(req.body);
       res.json(bookingResult);
     }
   });
