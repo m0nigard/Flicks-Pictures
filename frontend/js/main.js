@@ -68,7 +68,7 @@ async function router() {
       startMD(searchParams);  // On the other side, retrieve with: params.get('id')
       break;
     case '/partials/tickets.html':
-      loadBookingPage();
+      loadBookingPage(searchParams);
       break;
   }
 }

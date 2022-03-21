@@ -24,10 +24,10 @@ async function getScreeningDetails(id) {
 }
 
 // Sets up datepicker element
-function setupDatePicker() {
+function setupDatePicker(date) {
   const datePicker = document.getElementById('ticket-datepicker');
   let currentDate = new Date();
-  datePicker.value = currentDate.toJSON().substring(0, 10);
+  datePicker.value = date;
   datePicker.max = dateStringFormatter(currentDate.getFullYear() + '-' + (currentDate.getMonth() + 2) + '-' + currentDate.getDate());
   datePicker.min = dateStringFormatter(currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate());
 
@@ -37,15 +37,21 @@ function setupDatePicker() {
 }
 
 // Fills the dropdown menu with screenings of the picked date
-async function renderMovieSelect(dateStr) {
+async function renderMovieSelect(dateStr, paramId) {
   if (dateStr === '') { return; }
   const screenings = await getScreeningDetailsPerDate(dateStr);
   const movieSelect = document.getElementById('movie-ticket');
   let html = '';
   screenings.forEach(element => {
-    html += `<option data-screening-id="${element.id}" value="${element.id}">${element.date.substring(11)} - ${element.auditoriumName} - ${element.movieTitle}</option>`;
+    html += `<option ${element.id === paramId ? 'selected' : ''} data-screening-id="${element.id}" value="${element.id}">${element.date.substring(11)} - ${element.auditoriumName} - ${element.movieTitle}</option>`;
   });
   movieSelect.innerHTML = html;
+
+  // If screening from params, load screening
+  if (paramId !== null) {
+    renderSeatMap(paramId);
+    return;
+  }
 
   // Load first screening
   if (screenings.length > 0) {
@@ -90,7 +96,6 @@ async function renderSeatMap(screeningId) {
 
 // Refresh seat map to mark occupied seats
 async function refreshBookedSeats() {
-  console.log('-refresh');
   const screeningDetails = await getScreeningDetails(document.querySelector('.container-ticket').getAttribute('data-screeningid'));
   const seatsTaken = await JSON.parse(screeningDetails.seatsTaken) || [];
   seatsTaken.forEach(element => {
@@ -178,10 +183,18 @@ async function createBooking() {
 }
 
 // Starter function for Tickets page
-async function loadBookingPage() {
+async function loadBookingPage(params) {
+  // Manage params to allow datepicker and selected screening to be adjusted
+  let paramId = params !== undefined ? parseInt(params.get('screeningId')) : null;
+  let date = new Date().toJSON().substring(0, 10);
+  if (paramId !== null) {
+    let paramScreening = await getScreeningDetails(paramId);
+    date = paramScreening.date.substring(0, 10);
+  }
+
   setupTicketModal(); // Initialize ticket Modal (hidden before pressing 'BUY TICKETS')
-  setupDatePicker();
-  renderMovieSelect(new Date().toJSON().substring(0, 10));  // Fills dropdown menu with movies 
+  setupDatePicker(date);
+  renderMovieSelect(date, paramId);  // Fills dropdown menu with movies 
 
   // Setup dropdown menu for Movie selection
   const movieSelect = document.getElementById('movie-ticket');
@@ -215,5 +228,16 @@ async function loadBookingPage() {
     document.getElementById('booking-info-movie').innerHTML = selectedScreening.movieTitle;
     document.getElementById('booking-info-auditorium').innerHTML = selectedScreening.auditoriumName;
   });
-  ticketRefreshInterval = setInterval(refreshBookedSeats, 10000);
+
+  // Clear interval for seatmap refreshing
+  if (ticketRefreshInterval !== undefined) { clearInterval(ticketRefreshInterval); }
+
+  // Refresh seatmap every 10 sec
+  ticketRefreshInterval = setInterval(() => {
+    if (document.querySelector('.container-ticket') === null) {
+      clearInterval(ticketRefreshInterval);   // Clear interval when navigated to another page
+      return;
+    };
+    refreshBookedSeats();
+  }, 10000);  // Refresh interval in ms
 }
