@@ -17,6 +17,67 @@ module.exports = function (app, runQueryFunction, db) {
       `);
   });
 
+  app.delete('/api/myBooking/:bookingId', (req, res) => {
+
+    let userId = req.session.user?.id;  // Get logged in user
+
+    const cancelBooking = db.prepare(`
+      UPDATE Booking
+      SET cancelled = 1
+      WHERE id = @bookingId
+      AND
+      customerId = ${userId}
+  `);
+
+    const cancelTickets = db.prepare(`
+      UPDATE SeatTicket
+      SET screeningId = NULL
+      WHERE bookingId = @bookingId 
+      AND 
+      (SELECT customerId from Booking WHERE customerId = ${userId}
+      And
+      id = @bookingId)
+  `);
+
+    let transactionResult = { cancelBooking: null, cancelTickets: null }
+
+    const transaction = db.transaction(() => {
+      transactionResult.cancelBooking = cancelBooking.run({ ...{ userId: userId }, ...req.params });
+      transactionResult.cancelTickets = cancelTickets.run({ ...{ userId: userId }, ...req.params });
+    });
+
+    let errorResult;  // Stores error message on error
+    try {
+      transaction();  // Commits transaction. SeatTickets 2+ as argument
+    } catch (error) {
+      errorResult = { _error: error + '' }
+    }
+
+    // Return result
+    if (errorResult !== undefined) {
+      console.log(errorResult)
+      res.status(500);
+      res.json(errorResult)
+    } else {
+      if (!transactionResult) {
+        console.log(errorResult)
+        res.status(404);
+      }
+      res.json(transactionResult);
+    }
+  });
+
+  app.get('/api/myBooking/', (req, res) => {
+
+    let userId = req.session.user?.id;  // Get logged in user
+
+    runQueryFunction(res, { customerId: userId }, `
+    SELECT * FROM VW_BookingList
+    WHERE customerId = :customerId
+    `);
+
+  });
+
   // Route to add booking (not using the default runQueryFunction)
   app.post('/api/addBooking', (req, res) => {
     let userId = req.session.user?.id;  // Get logged in user
