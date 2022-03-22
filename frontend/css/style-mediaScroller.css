@@ -10,6 +10,7 @@
     grid-auto-flow: column;
     grid-auto-columns: 15%;
     overflow-y: hidden;
+    scrollbar-width: none;
 
     background-color: rgba(0, 0, 0, 0.85);
     border: 2px solid maroon;
@@ -25,7 +26,7 @@
 
 
 .movie-scroller::-webkit-scrollbar{
-    width: 0;
+    display: none;
 }
 
 .item{
