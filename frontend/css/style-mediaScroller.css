@@ -1,0 +1,84 @@
+/*@import "https://unpkg.com/open-props";*/
+/*@import "https://unpkg.com/open-props/normalize.min.css";*/
+
+
+
+
+.movie-scroller{
+    display: grid;
+    gap: var(--size-1);
+    grid-auto-flow: column;
+    grid-auto-columns: 15%;
+    overflow-y: hidden;
+
+    background-color: rgba(0, 0, 0, 0.85);
+    border: 2px solid maroon;
+    padding-top: 10px;
+    
+
+    margin-left: 200px;
+    margin-right: 200px;
+
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+}
+
+
+.movie-scroller::-webkit-scrollbar{
+    width: 0;
+}
+
+.item{
+    display: grid;
+    grid-template-rows: min-content;
+    padding: 0px;
+    justify-content: center;
+    border-radius: var(--radius-2);
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 0px;
+}
+
+
+.picMS {
+    inline-size: 100%;
+    object-fit: cover;
+    
+}
+
+.movieScrollerAtag{
+  text-decoration: none !important;
+}
+
+
+.titleMS{
+  color: white;
+  text-decoration: none !important;
+  margin-bottom: 0px;
+}
+
+.picMS:hover {
+    box-shadow: 0 0 8px 3px white;
+    border: 0px solid white;
+  }
+
+.titleMS:hover{
+    color: white; 
+    font-weight: bold;
+    text-decoration:none; 
+    cursor:pointer; 
+}
+
+
+@media screen and (max-width: 376px) {
+
+    .titleMS{
+        display: none;
+    }
+
+    .movie-scroller{
+        grid-auto-columns: 30%;
+    }
+    
+}
+

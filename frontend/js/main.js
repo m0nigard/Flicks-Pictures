@@ -60,6 +60,7 @@ async function router() {
   document.querySelector('.main-content').innerHTML = content;
   // run the productLister function (in another file)
   // if the route is '/partials/products.html';
+  startMediaScroller()
   switch (route) {
     case '/partials/movies.html':
       start();
