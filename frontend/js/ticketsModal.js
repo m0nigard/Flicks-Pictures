@@ -49,7 +49,11 @@ async function setupTicketModal() {
     }
   }
   document.getElementById('confirm-booking').addEventListener('click', event => {
-    if (selectedTicketTypesCount === selectedSeats.length) { createBooking(); }
+    if (selectedTicketTypesCount === selectedSeats.length) {
+      createBooking();
+    } else {
+      launchToast(`You need to select ${selectedSeats.length - selectedTicketTypesCount} more tickets!`);
+    }
   });
 }
 

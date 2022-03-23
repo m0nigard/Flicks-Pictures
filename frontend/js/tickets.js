@@ -32,7 +32,7 @@ function setupDatePicker(date) {
   datePicker.min = dateStringFormatter(currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate());
 
   datePicker.addEventListener('change', event => {
-    renderMovieSelect(datePicker.value)
+    renderMovieSelect(datePicker.value, null)
   });
 }
 

@@ -1,0 +1,78 @@
+{
+    "guest": {
+      "login": {
+        "post": true,
+        "get": true
+      },
+      "Customer": {
+        "post": true
+      },
+      "VW_MoviesDetails": {
+        "get": true
+      },
+      "VW_MoviesWithActiveScreenings": {
+        "get": true
+      },
+      "VW_ScreeningDetails": {
+        "get": true
+      },
+      "VW_ScreeningDetailsByDate": {
+        "get": true
+      },
+      "Screening": {
+        "get": true
+      },
+      "TicketType": {
+        "get": true
+      },
+      "VW_MoviesAG_7": {
+        "get": true
+      },
+      "VW_MoviesAG_11": {
+        "get": true
+      },
+      "VW_MoviesAG_15": {
+        "get": true
+      }
+    },
+    "customer": {
+      "login": {
+        "get": true,
+        "delete": true
+      },
+      "VW_MoviesDetails": {
+        "get": true
+      },
+      "VW_MoviesWithActiveScreenings": {
+        "get": true
+      },
+      "VW_ScreeningDetails": {
+        "get": true
+      },
+      "VW_ScreeningDetailsByDate": {
+        "get": true
+      },
+      "Screening": {
+        "get": true
+      },
+      "TicketType": {
+        "get": true
+      },
+      "myBooking": {
+        "get": true,
+        "delete": true
+      },
+      "addBooking": {
+        "post": true
+      },
+      "VW_MoviesAG_7": {
+        "get": true
+      },
+      "VW_MoviesAG_11": {
+        "get": true
+      },
+      "VW_MoviesAG_15": {
+        "get": true
+      }
+    }
+}

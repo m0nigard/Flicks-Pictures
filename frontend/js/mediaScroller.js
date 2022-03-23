@@ -8,10 +8,7 @@ async function getDataToMovieScroller(){
 
 
 async function startMediaScroller(){
-    console.log("Kommer jag hit? - 1")
     movieScrollerArray =  await getDataToMovieScroller();
-
-    console.log("Kommer jag hit?")
 
     let html = ''
     for(let movie of movieScrollerArray){
