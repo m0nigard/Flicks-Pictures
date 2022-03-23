@@ -3,6 +3,8 @@ const passwordEncryptor = require('./passwordEncryptor');
 
 // Import non-generic customized REST routes
 const specialRestRoutes = require('./rest-api-special');
+const aclCheck = require('./acl');
+const res = require('express/lib/response');
 
 const userTable = 'Customer';
 const passwordField = 'password';
@@ -10,7 +12,14 @@ const passwordField = 'password';
 let db;
 
 //helper function to run queries
-function runQuery(response, params, sqlAsText, noArray = false) {
+function runQuery(tablename, request, response, params, sqlAsText, noArray = false) {
+  
+  if(!aclCheck(tablename, request)){
+    response.status(405);
+    response.json({__error: 'Method Not Allowed!'});
+    return;
+  }
+  
   let result
   try {
     let stmt = db.prepare(sqlAsText)
@@ -44,6 +53,11 @@ module.exports = function setupRESTapi(app, dbConnection) {
 
   //add special route for listing all tables and views
   app.get('/api/tablesAndViews', (request, response) => {
+    if(!aclCheck('tablesAndViews', request)){
+      response.status(405);
+      response.json({__error: 'Method Not Allowed!'});
+      return;
+    }
     response.json(tablesAndViews)
   })
 
@@ -52,7 +66,7 @@ module.exports = function setupRESTapi(app, dbConnection) {
     //req and res are returned and the method call => is triggered (weird syntax yes)
     app.get('/api/' + name, (request, response) => {
       // run statement to get all data
-      runQuery(response, {}, `
+      runQuery(name, request, response, {}, `
         SELECT * FROM ${name};
       `)
     })
@@ -61,7 +75,7 @@ module.exports = function setupRESTapi(app, dbConnection) {
     //the /:id is express syntax, that can look for a specific column name (i think?)
     //and just :id is sqlite syntax
     app.get('/api/' + name + '/:id', (request, response) => {
-      runQuery(response, request.params, `
+      runQuery(name, request, response, request.params, `
         SELECT * FROM ${name} WHERE id = :id
      `, true)
     })
@@ -81,7 +95,7 @@ module.exports = function setupRESTapi(app, dbConnection) {
         request.body[passwordField] = passwordEncryptor(request.body[passwordField]);
       }
 
-      runQuery(response, request.body, `
+      runQuery(name, request, response, request.body, `
         INSERT INTO ${name} (${Object.keys(request.body)}) VALUES (${Object.keys(request.body).map(x => ':' + x)})
       `)
     })
@@ -93,7 +107,7 @@ module.exports = function setupRESTapi(app, dbConnection) {
         request.body[passwordField] = passwordEncryptor(request.body[passwordField]);
       }
 
-      runQuery(response, { ...request.body, ...request.params }, `
+      runQuery(name, request, response, { ...request.body, ...request.params }, `
         UPDATE ${name} SET ${Object.keys(request.body).map(x => x + ' = :' + x)} WHERE id = :id
       `)
     }
@@ -102,7 +116,7 @@ module.exports = function setupRESTapi(app, dbConnection) {
 
     //add delete route
     app.delete('/api/' + name + '/:id', (request, response) => {
-      runQuery(response, request.params, `
+      runQuery(name, request, response, request.params, `
       DELETE FROM ${name} WHERE id = :id;
       `)
     })
