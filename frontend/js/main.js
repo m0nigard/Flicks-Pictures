@@ -71,6 +71,9 @@ async function router() {
     case '/partials/tickets.html':
       loadBookingPage(searchParams);
       break;
+    case "/partials/bookings.html":
+      loadBookingHistoryPage();
+      break;
   }
 }
 

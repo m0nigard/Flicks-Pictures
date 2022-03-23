@@ -1,0 +1,119 @@
+.historyTable th h1 {
+
+    font-weight: bold;
+    font-size: 1em;
+    text-align: left;
+    color: white;
+}  
+
+.historyTable td {
+
+    font-weight: normal;
+    font-size: 1em;
+    -webkit-box-shadow: 0 2px 2px -2px #555;
+    -moz-box-shadow: 0 2px 2px -2px #555;
+    box-shadow: 0 2px 2px -2px #555;
+}
+
+.historyTable {
+    text-align: center;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0 0 8em 0;
+}
+
+.historyTable td, .historyTable th {
+    padding-bottom: 2%;
+    padding-top: 2%;
+    padding-left:2%;  
+}
+
+/* Background-color of the even rows */
+.historyTable tr:nth-child(even) {
+
+    background-color: #2C3446;
+}
+
+.historyTable th {
+    
+    background-color: #7f2121;
+}
+
+.historyTable td:first-child {
+
+     color: #000000; 
+}
+
+.historyTable tr:hover {
+
+    background-color: #464A52;
+    -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+    -moz-box-shadow: 0 6px 6px -6px #0E1119;
+    box-shadow: 0 6px 6px -6px #0E1119;
+}
+
+.historyTable td:hover {
+
+  background-color: #7f2121;
+  color: #ffffff;
+  font-weight: bold;
+  
+  box-shadow: #666 -1px 1px, #555 -2px 2px, #444 -3px 3px, #333 -4px 4px, #222 -5px 5px, #111 -6px 6px;
+  transform: translate3d(6px, -6px, 0);
+  
+  transition-delay: 0s;
+  transition-duration: 0.3s;
+  transition-property: all;
+  transition-timing-function: line;
+}
+
+#close-bookingInfo{
+
+    margin-bottom: 5px;
+}
+
+.head-popup {
+
+    margin-top: 3%;
+    background: rgb(37, 37, 37);
+    padding-bottom: 10px;
+}
+
+.movie-picture{ /*Kolla på detta. Tilt som fan........*/
+
+    margin-top: 3%;
+    float: left;
+    width: 16%;
+  }
+  
+.head-popup h1 {
+
+    position: relative;
+    margin-left: 40%;
+}
+
+.body-popup {
+
+    margin-top: 30px;
+    background-color: white;
+    color: black;
+}
+
+.body-popup p{
+
+    margin-left: 35%;
+    font-family: Arial Bold; 
+}
+
+#visit-movie, #yes-button{
+
+    color: green;
+    margin-right: 30%;
+
+}
+
+td{
+
+    background-color: white;
+    color: black;
+}
