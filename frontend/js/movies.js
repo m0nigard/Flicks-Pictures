@@ -1,7 +1,7 @@
 let dataString = '/api/VW_MoviesWithActiveScreenings'
-//for real dates, set currDate = new Date()
+//for real dates, set currDate = new Date() 2022, 3, 22
 //the month in Date-objects starts at 0, stupidly
-let currDate = new Date(2022, 3, 22)
+let currDate = new Date()
 let fwCurrDate = new Date(currDate)
 let currDateSelectorVal
 
@@ -16,6 +16,7 @@ async function getData(restRoute) {
 
 //rendering array of obj to HTML
 function renderList(cssSelector, list) {
+  console.log(list);
   //build HTML container
   let html = ''
   list.forEach(element => {
@@ -23,6 +24,10 @@ function renderList(cssSelector, list) {
     let title = element.title
     html += `<a href="/movie-details?id=${element.id}" class="movie-link"><img class="movie-poster" src="${image}" alt="${title}"></a>`
   });
+  // Put empty placeholder to the right to not leave empty space between two movies
+  if (list.length % 3 === 2) {
+    html += `<img class="movie-poster invisible movie-link">`
+  }
   document.querySelector(cssSelector).innerHTML = html;
 }
 

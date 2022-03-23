@@ -206,6 +206,11 @@ async function loadBookingPage(params) {
   const container = document.querySelector('.container-ticket');
   container.addEventListener('click', (e) => {
     if (e.target.classList.contains('seat') && !e.target.classList.contains('occupied')) {
+      // If movie has already started, don't select seat and instead throw a toast
+      if (selectedScreening.date < (new Date().toLocaleString("sv-SE", { timeZone: "Europe/Stockholm" }))) {
+        launchToast('This movie has already started!');
+        return;
+      }
       e.target.classList.toggle('selected');
       updateSelectedCount();
     }
