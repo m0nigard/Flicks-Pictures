@@ -82,6 +82,7 @@ async function loadBookingHistoryPage() {
             <button class="button-book" id="cancel-booking">
                 <span></span> Cancel Booking
             </button>`
+
         }
 
         BookingHistoryPopUp += `</div>`
@@ -95,12 +96,14 @@ async function loadBookingHistoryPage() {
             modal.style.display = "none"
         })
 
-        // cancel booking
-        document.querySelector("#cancel-booking").addEventListener("click", async function (event) {
+        if (info.cancelled === 0 && today < movieDate) {
 
-            // html buttons to confirm
-            BookingHistoryPopUp =
-                `
+            // cancel booking
+            document.querySelector("#cancel-booking").addEventListener("click", async function (event) {
+
+                // html buttons to confirm
+                BookingHistoryPopUp =
+                    `
                 <span class="close" id = close-cancelConfirmation>&times;</span>
                 <h1>Are you sure you want to cancel</h1>
             <div class = footer-popup>
@@ -112,46 +115,50 @@ async function loadBookingHistoryPage() {
                 </button>
             </div>`
 
-            // display
-            document.querySelector(".modal-content").innerHTML = BookingHistoryPopUp
+                // display
+                document.querySelector(".modal-content").innerHTML = BookingHistoryPopUp
 
-            // close the popup if cross is pressed
-            document.querySelector(".close").addEventListener("click", function (event) {
+                // close the popup if cross is pressed
+                document.querySelector(".close").addEventListener("click", function (event) {
 
-                modal.style.display = "none"
+                    modal.style.display = "none"
+                })
+
+                // if yes is pressed cancell booking
+                document.querySelector("#yes-button").addEventListener("click", async function (event) {
+
+                    let result = {}
+
+                    // try catch to call rest delete method.
+                    try {
+                        result = await (await fetch(`/api/myBooking/${info.id}`, {
+                            method: 'DELETE',
+                            headers: { 'Content-Type': 'application/json' },
+                        })).json();
+                    } catch (error) {
+                        console.log(error);
+                    }
+
+                    // toast to confirm
+                    launchToast("Cancellation confirmed")
+
+                    // hide and reload html
+                    modal.style.display = "none"
+                    loadBookingHistoryPage()
+
+                })
+
+                // if no just go back to booking history
+                document.querySelector("#no-button").addEventListener("click", async function (event) {
+                    modal.style.display = "none"
+
+                })
+
             })
 
-            // if yes is pressed cancell booking
-            document.querySelector("#yes-button").addEventListener("click", async function (event) {
 
-                let result = {}
+        }
 
-                // try catch to call rest delete method.
-                try {
-                    result = await (await fetch(`/api/myBooking/${info.id}`, {
-                        method: 'DELETE',
-                        headers: { 'Content-Type': 'application/json' },
-                    })).json();
-                } catch (error) {
-                    console.log(error);
-                }
-
-                // toast to confirm
-                launchToast("Cancellation confirmed")
-
-                // hide and reload html
-                modal.style.display = "none"
-                loadBookingHistoryPage()
-
-            })
-
-            // if no just go back to booking history
-            document.querySelector("#no-button").addEventListener("click", async function (event) {
-                modal.style.display = "none"
-
-            })
-
-        })
 
     })
 
