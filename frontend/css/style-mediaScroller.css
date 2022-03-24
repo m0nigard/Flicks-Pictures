@@ -5,27 +5,57 @@
 
 
 .movie-scroller{
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.85);
+    border: 2px solid maroon;
+    
+}
+.ms-leftarrow{
+    display: flex;
+    flex-direction: row;
+    font-size: 30px;
+    padding-right: 5px;
+    padding-left: 5px;
+   
+}
+
+.ms-rightarrow{
+    display: flex;
+    flex-direction: row;
+    font-size: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.ms-leftarrow:hover{
+    cursor: pointer;
+}
+
+.ms-rightarrow:hover{
+    cursor: pointer;
+}
+.ms-content{
+    flex: 1;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    gap: 1%;
+    scrollbar-width: none; 
     display: grid;
-    gap: var(--size-1);
     grid-auto-flow: column;
     grid-auto-columns: 15%;
     overflow-y: hidden;
-    scrollbar-width: none;
-
-    background-color: rgba(0, 0, 0, 0.85);
-    border: 2px solid maroon;
-    padding-top: 10px;
+    
     
 
-    margin-left: 200px;
-    margin-right: 200px;
-
+    
     overflow-x: auto;
     overscroll-behavior-inline: contain;
 }
 
 
-.movie-scroller::-webkit-scrollbar{
+
+.ms-content::-webkit-scrollbar{
     display: none;
 }
 
@@ -70,16 +100,39 @@
     cursor:pointer; 
 }
 
-
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 800px) {
 
     .titleMS{
         display: none;
     }
 
-    .movie-scroller{
-        grid-auto-columns: 30%;
+    .ms-content{
+        grid-auto-columns: 20%;
     }
     
+} 
+
+
+@media screen and (max-width: 400px) {
+
+    .titleMS{
+        display: none;
+    }
+
+    .ms-content{
+        grid-auto-columns: 40%;
+    }
+    
+} 
+
+@media (hover: none) {
+    .ms-leftarrow{
+        display: none;
+
+    }
+
+    .ms-rightarrow{
+        display: none;
+    }
 }
 

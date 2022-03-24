@@ -23,6 +23,30 @@ async function startMediaScroller(){
         `
     }
 
-    document.querySelector('.movie-scroller').innerHTML = html
+    document.querySelector('.ms-content').innerHTML = html
 
 }
+
+document.querySelector(".ms-leftarrow").addEventListener('click', () => {
+    let counter = 0;
+    const leftInterval = setInterval(() => {
+        if(counter === 200){
+            clearInterval(leftInterval)
+        }
+        document.querySelector(".ms-content").scrollLeft -= 1;
+        counter++;
+    }, 1); 
+    
+    
+});
+
+document.querySelector(".ms-rightarrow").addEventListener('click', () => {
+    let counter = 0;
+    const rightInterval = setInterval(() => {
+        if(counter === 200){
+            clearInterval(rightInterval)
+        }
+        document.querySelector(".ms-content").scrollLeft += 1.5;
+        counter++;
+    }, 1); 
+});
