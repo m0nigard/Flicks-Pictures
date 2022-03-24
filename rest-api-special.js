@@ -11,13 +11,19 @@ module.exports = function (app, runQueryFunction, db) {
 
     // Return Screening details filtered by date
     // Format: YYYY-MM-DD  - Can be shortened for wider filter, such as 2022-03 for one month
-    runQueryFunction(res, req.params, `
+    runQueryFunction('VW_ScreeningDetailsByDate', req, res, req.params, `
       SELECT * FROM VW_ScreeningDetails
       WHERE substr(date, 0, 12) LIKE :date || '%'
       `);
   });
 
   app.delete('/api/myBooking/:bookingId', (req, res) => {
+
+    if(!aclCheck('myBooking', req)){
+      res.status(405);
+      res.json({__error: 'Method Not Allowed!'});
+      return;
+    }
 
     let userId = req.session.user?.id;  // Get logged in user
 
@@ -67,11 +73,13 @@ module.exports = function (app, runQueryFunction, db) {
     }
   });
 
-  app.get('/api/myBooking/', (req, res) => {
+  app.get('/api/myBooking', (req, res) => {
+
+    
 
     let userId = req.session.user?.id;  // Get logged in user
 
-    runQueryFunction(res, { customerId: userId }, `
+    runQueryFunction('myBooking', req, res, { customerId: userId }, `
     SELECT * FROM VW_BookingList
     WHERE customerId = :customerId
     `);
@@ -80,6 +88,13 @@ module.exports = function (app, runQueryFunction, db) {
 
   // Route to add booking (not using the default runQueryFunction)
   app.post('/api/addBooking', (req, res) => {
+    
+    if(!aclCheck('addBooking', req)){
+      res.status(405);
+      res.json({__error: 'Method Not Allowed!'});
+      return;
+    }
+
     let userId = req.session.user?.id;  // Get logged in user
     let date = new Date().toLocaleString("sv-SE", { timeZone: "Europe/Stockholm" });
 
