@@ -323,7 +323,10 @@ a > img:only-child {
   text-decoration: none;
   border-bottom: 3px solid transparent;
   transition: border-bottom 1s;
+}
 
+.current-screenings-item-started a {
+  color: grey;
 }
 
 .current-screenings-item a:hover {

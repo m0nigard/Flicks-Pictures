@@ -144,12 +144,17 @@ button {
   box-shadow: 0 3px 10px rgba(255, 255, 255, 0.75);
 }
 
-p.text {
+p.text, p.text-select {
   margin: 5px 0;
 }
 
 p.text span {
   color: #050505;
+}
+
+p.text-select span {
+  color: whitesmoke;
+  font-weight: bold;
 }
 
 .button-book {

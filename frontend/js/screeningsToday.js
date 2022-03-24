@@ -11,6 +11,7 @@ async function drawTodayContainer(screeningsToday, headtitle) {
   let newDayContainer = document.createElement('div');
   newDayContainer.classList.add('current-screenings-day');
   currentScreeningsContainer.appendChild(newDayContainer);
+  let currentDate = new Date().toLocaleString("sv-SE", { timeZone: "Europe/Stockholm" });
 
   let html = `<h2>${headtitle}</h2>`;
 
@@ -42,9 +43,10 @@ async function drawTodayContainer(screeningsToday, headtitle) {
     `;
 
       value.forEach(element => {
+        let alreadyStarted = (currentDate > element.date) ? true : false;
         html += `
-      <p class="current-screenings-item" title="${element.movieTitle}">
-        <a href="/tickets?screeningId=${element.id}">${element.date.substring(11)} - ${element.movieTitle}</a>
+      <p class="current-screenings-item${alreadyStarted ? ' current-screenings-item-started' : ''}" title="${element.movieTitle}">
+        <a ${alreadyStarted ? 'onClick="launchToast(`This movie has already started!`)"' : ''} href="/tickets?screeningId=${element.id}">${element.date.substring(11)} - ${element.movieTitle}</a>
       </p>
       `;
       });

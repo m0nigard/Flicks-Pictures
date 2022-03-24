@@ -185,7 +185,10 @@ async function createBooking() {
 // Starter function for Tickets page
 async function loadBookingPage(params) {
   // Manage params to allow datepicker and selected screening to be adjusted
-  let paramId = params !== undefined ? parseInt(params.get('screeningId')) : null;
+  let paramId = null;
+  if (params !== undefined) {
+    paramId = parseInt(params.get('screeningId')) || null;
+  }
   let date = new Date().toJSON().substring(0, 10);
   if (paramId !== null) {
     let paramScreening = await getScreeningDetails(paramId);
