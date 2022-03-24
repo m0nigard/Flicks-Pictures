@@ -16,7 +16,6 @@ async function getData(restRoute) {
 
 //rendering array of obj to HTML
 function renderList(cssSelector, list) {
-  console.log(list);
   //build HTML container
   let html = ''
   list.forEach(element => {

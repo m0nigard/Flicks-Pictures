@@ -2,7 +2,7 @@
 
 
 // runQuery(response, params, sqlAsText, noArray = false)
-module.exports = function (app, runQueryFunction, db) {
+module.exports = function (app, runQueryFunction, db, aclCheck) {
   // require funktion
   const nodemailer = require("nodemailer");
   const emailFunction = require('./email');
@@ -19,9 +19,9 @@ module.exports = function (app, runQueryFunction, db) {
 
   app.delete('/api/myBooking/:bookingId', (req, res) => {
 
-    if(!aclCheck('myBooking', req)){
+    if (!aclCheck('myBooking', req)) {
       res.status(405);
-      res.json({__error: 'Method Not Allowed!'});
+      res.json({ __error: 'Method Not Allowed!' });
       return;
     }
 
@@ -75,7 +75,7 @@ module.exports = function (app, runQueryFunction, db) {
 
   app.get('/api/myBooking', (req, res) => {
 
-    
+
 
     let userId = req.session.user?.id;  // Get logged in user
 
@@ -88,10 +88,10 @@ module.exports = function (app, runQueryFunction, db) {
 
   // Route to add booking (not using the default runQueryFunction)
   app.post('/api/addBooking', (req, res) => {
-    
-    if(!aclCheck('addBooking', req)){
+
+    if (!aclCheck('addBooking', req)) {
       res.status(405);
-      res.json({__error: 'Method Not Allowed!'});
+      res.json({ __error: 'Method Not Allowed!' });
       return;
     }
 

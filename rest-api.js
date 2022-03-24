@@ -13,13 +13,13 @@ let db;
 
 //helper function to run queries
 function runQuery(tablename, request, response, params, sqlAsText, noArray = false) {
-  
-  if(!aclCheck(tablename, request)){
+
+  if (!aclCheck(tablename, request)) {
     response.status(405);
-    response.json({__error: 'Method Not Allowed!'});
+    response.json({ __error: 'Method Not Allowed!' });
     return;
   }
-  
+
   let result
   try {
     let stmt = db.prepare(sqlAsText)
@@ -54,9 +54,9 @@ module.exports = function setupRESTapi(app, dbConnection) {
   //add special route for listing all tables and views
   app.get('/api/tablesAndViews', (request, response) => {
 
-    if(!aclCheck('tablesAndViews', request)){
+    if (!aclCheck('tablesAndViews', request)) {
       response.status(405);
-      response.json({__error: 'Method Not Allowed!'});
+      response.json({ __error: 'Method Not Allowed!' });
       return;
     }
 
@@ -125,7 +125,7 @@ module.exports = function setupRESTapi(app, dbConnection) {
   }
 
   // Call specialRestRoutes module, inject app & runQuery into it
-  specialRestRoutes(app, runQuery, db);
+  specialRestRoutes(app, runQuery, db, aclCheck);
 
   //add 404 route (will match this route if no other routes matches the request)
   app.all('/api/*', (request, response) => {
