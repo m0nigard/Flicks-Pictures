@@ -1,6 +1,4 @@
 // Non-generic customized REST routes
-const aclCheck = require('./acl');
-
 
 // runQuery(response, params, sqlAsText, noArray = false)
 module.exports = function (app, runQueryFunction, db, aclCheck) {
