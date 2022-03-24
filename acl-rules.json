@@ -19,6 +19,9 @@
       "VW_ScreeningDetailsByDate": {
         "get": true
       },
+      "VW_UpcomingScreeningsPerMovie": {
+        "get": true
+      },
       "Screening": {
         "get": true
       },
@@ -50,6 +53,9 @@
         "get": true
       },
       "VW_ScreeningDetailsByDate": {
+        "get": true
+      },
+      "VW_UpcomingScreeningsPerMovie": {
         "get": true
       },
       "Screening": {
