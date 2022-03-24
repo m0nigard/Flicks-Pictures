@@ -5,7 +5,7 @@ const betterSqlite3 = require('better-sqlite3');
 const db = betterSqlite3('./database/cinema.sqlite3');
 
 // Collect data from nested JSON into Array
-const arrayData = collectData(require('./JSON/movies_edit.json'))
+const arrayData = collectData(require('../JSON/movies_edit.json'))
 
 // Build SQL statement and transfer to DB
 DBtransfer(arrayData, 'Movie', 'Review')

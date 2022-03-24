@@ -21,11 +21,11 @@ app.use(express.json({ limit: '100MB' }))
 app.listen(3000, () => console.log('Listening on http://localhost:' + port))
 
 // Import the login.js function and call it
-const login = require('./login.js');
+const login = require('./backend/login.js');
 login(app, db);
 
 //import the restapi function from the rest-api.js file
-const setupRESTapi = require('./rest-api.js')
+const setupRESTapi = require('./backend/rest-api.js')
 setupRESTapi(app, db)
 
 app.all('/partials/*', (req, res) => {

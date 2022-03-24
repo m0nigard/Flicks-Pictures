@@ -1,4 +1,4 @@
-const aclRules = require('./acl-rules.json');
+const aclRules = require('../acl-rules.json');
 
 module.exports = function (tableName, req) {
   
