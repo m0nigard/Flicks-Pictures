@@ -2,6 +2,8 @@ const session = require('express-session');
 const store = require('better-express-store');
 
 const passwordEncryptor = require('./passwordEncryptor');
+const aclCheck = require('./acl');
+
 
 const passwordField = 'password';
 
@@ -18,6 +20,13 @@ module.exports = function (app, db) {
 
   // Setting up /api/login routes to allow log in/out
   app.post('/api/login', (req, res) => {
+
+    if (!aclCheck('login', req)) {
+      res.status(405);
+      res.json({ __error: 'Method Not Allowed!' });
+      return;
+    }
+
     // Encrypt the password
     req.body[passwordField] = passwordEncryptor(req.body[passwordField]);
 
@@ -40,11 +49,21 @@ module.exports = function (app, db) {
 
   // Used to check if logged in
   app.get('/api/login', (req, res) => {
+    if (!aclCheck('login', req)) {
+      res.status(405);
+      res.json({ __error: 'Method Not Allowed!' });
+      return;
+    }
     res.json(req.session.user || { _error: 'Not logged in' });
   });
 
   // Delete to logout 
   app.delete('/api/login', (req, res) => {
+    if (!aclCheck('login', req)) {
+      res.status(405);
+      res.json({ __error: 'Method Not Allowed!' });
+      return;
+    }
     delete req.session.user;
     res.json({});
   });
