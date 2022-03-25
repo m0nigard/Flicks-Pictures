@@ -19,7 +19,7 @@ module.exports = function (app, runQueryFunction, db, aclCheck) {
   app.get('/api/VW_UpcomingScreeningsPerMovie/:id', (req, res) => {
 
     // Return next 3 upcoming screenings for a given movieID
-    runQueryFunction('VW_NextScreenings', req, res, req.params, `
+    runQueryFunction('VW_UpcomingScreeningsPerMovie', req, res, req.params, `
     SELECT * FROM VW_NextScreeningsPerMovie
     WHERE id = :id
     LIMIT 3
