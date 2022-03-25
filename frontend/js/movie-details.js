@@ -34,7 +34,7 @@ function renderMovieDetails(cssSelector, obj) {
 
     <div class="movie_details_title">
     <h2 class="movie_title">${obj.title} (${obj.productionYear})</h2>
-    <a class="m_details_book_tickets-button" href="/tickets?movieId=${obj.id}">Book tickets</a>
+    <a id="m_details_book_tickets-button" href="#">Book tickets</a>
     </div>
     </br>
 
@@ -94,10 +94,28 @@ function jsonFormatter(jsonData){
 
 async function startMD(params) {
   id = params.get('id');
-  processDataMD('/api/VW_MoviesDetails/' + id)
+  await processDataMD('/api/VW_MoviesDetails/' + id)
+  await processDataModal('/api/VW_UpcomingScreeningsPerMovie/' + id)
+  fixListener()
 }
 
 async function processDataMD(dataString) {
   let processedData = (await getData(dataString))
   renderMovieDetails('.movie-details', processedData, id)
 }
+
+async function processDataModal(dataString) {
+  let processedData = (await getData(dataString))
+  setupBookingModal(processedData, id)
+}
+
+function fixListener(){
+
+document.getElementById("m_details_book_tickets-button").addEventListener('click', async event => {
+  // If user not logged in, show login prompt instead (requires userLogin.js)
+console.log("hej")
+  document.getElementById("myModal").style.display = "block";  // Show Modal
+})
+}
+
+

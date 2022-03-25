@@ -200,7 +200,7 @@ main {
   flex-wrap: wrap;
 }
 
-.m_details_book_tickets-button {
+#m_details_book_tickets-button {
   color: rgb(255, 255, 255);
   background-color: black;
   opacity: 1;
@@ -213,9 +213,10 @@ main {
   transition: all 0.3s ease 0s;
 }
 
-.m_details_book_tickets-button:hover {
+#m_details_book_tickets-button:hover {
   background-color: rgb(53, 53, 53);
   border: 2px solid rgb(255, 255, 255);
+  cursor: pointer;
 }
 
 .movie_filter_selectors {
@@ -258,6 +259,7 @@ main {
 .movie-desc-table {
   text-align: left;
   border-collapse: collapse;
+  width: 90%;
 }
 
 .youtubeEmbed {
