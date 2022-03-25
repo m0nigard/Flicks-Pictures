@@ -7,21 +7,29 @@ let id = 0;
 function renderMovieDetails(cssSelector, obj) {
   //build HTML container
   let html = ''
-  let outputGenres = "null", outputActors = "null", outputProdc = "null"
-  let youtubeID = "null"
+  let outputGenres = "N/A", outputActors = "N/A", outputProdc = "N/A"
+  let youtubeID = "N/A", outputReviews = "N/A"
 
-  try{
+  try {
     youtubeID = obj.youtubeTrailer.substring(16)
     let genresJson = JSON.parse(obj.genres)
     let actorsJson = JSON.parse(obj.actors)
     let prodcJson = JSON.parse(obj.productionCountries)
-  
+    let reviewsJson = JSON.parse(obj.reviewSources)
+
     outputGenres = jsonFormatter(genresJson)
     outputActors = jsonFormatter(actorsJson)
     outputProdc = jsonFormatter(prodcJson)
-  }catch{(console.error("Error, Some JSON data is missing.."))}
+    outputReviews = reviewHTMLBuilder(reviewsJson)
 
-      html += `
+  } catch { (console.error("Error, Some JSON data is missing..")) }
+
+
+  let runtime = runtimeFormatter(obj.minuteLength)
+
+
+
+  html += `
       <iframe
       id="video"
       height="315"
@@ -40,7 +48,6 @@ function renderMovieDetails(cssSelector, obj) {
 
     <p>${obj.description}</p>
     </br><p>${obj.ageGroup}+</p>
-
   
       <div class="movie-desc-details">
          <table class="movie-desc-table">
@@ -57,8 +64,8 @@ function renderMovieDetails(cssSelector, obj) {
             <td>${outputActors}</td>
           </tr>
           <tr>
-            <th>Length:</th>
-            <td>${obj.minuteLength} minutes</td>
+            <th>Run time:</th>
+            <td>${runtime}</td>
           </tr>
           <tr>
             <th>Languages:</th>
@@ -72,31 +79,61 @@ function renderMovieDetails(cssSelector, obj) {
             <th>Production countries:</th>
             <td>${outputProdc}</td>
           </tr>
-        </table> 
+        </table><br>
+        <h2>Reviews</h2>
+        <p>${outputReviews}</p>
         </div>
+
       `
-      
-      document.querySelector(cssSelector).innerHTML = html;
+
+  document.querySelector(cssSelector).innerHTML = html;
 }
 
 //custom method to format json data to more readable format for html display
-function jsonFormatter(jsonData){
+function jsonFormatter(jsonData) {
   let formattedJsonData = ""
 
-  for (let i = 0; i < jsonData.length; i++){
+  for (let i = 0; i < jsonData.length; i++) {
     formattedJsonData += jsonData[i].name
-    if (i != jsonData.length - 1){
+    if (i != jsonData.length - 1) {
       formattedJsonData += ", "
     }
   }
   return formattedJsonData
 }
 
+function reviewHTMLBuilder(jsonData) {
+  let htmlBuilder = ''
+
+  for (let i = 0; i < jsonData.length; i++) {
+
+    let stars = JSON.stringify(jsonData[i].stars)
+    let source = JSON.stringify(jsonData[i].source).replace(/['"]+/g, '')
+
+    let maxStars = JSON.stringify(jsonData[i].max)
+    let paddingStars = maxStars - stars
+    let starBuilder = ''
+
+    // Rendering correct amounts of stars
+    while (stars--) starBuilder += '&#11088'
+    while (paddingStars--) starBuilder += '&#9734'
+
+    htmlBuilder += `${starBuilder}<p>${source}</p>
+    <p>${JSON.stringify(jsonData[i].quote)}</p>
+    
+    `
+    if (i != jsonData.length - 1) {
+      htmlBuilder += "<br>"
+    }
+  }
+  return htmlBuilder
+}
+
 async function startMD(params) {
   id = params.get('id');
   await processDataMD('/api/VW_MoviesDetails/' + id)
   await processDataModal('/api/VW_UpcomingScreeningsPerMovie/' + id)
-  fixListener()
+  addListenerToBookButton()
 }
 
 async function processDataMD(dataString) {
@@ -109,13 +146,16 @@ async function processDataModal(dataString) {
   setupBookingModal(processedData, id)
 }
 
-function fixListener(){
-
-document.getElementById("m_details_book_tickets-button").addEventListener('click', async event => {
-  // If user not logged in, show login prompt instead (requires userLogin.js)
-console.log("hej")
-  document.getElementById("myModal").style.display = "block";  // Show Modal
-})
+function addListenerToBookButton() {
+  document.getElementById("m_details_book_tickets-button").addEventListener('click', async event => {
+    document.getElementById("myModal").style.display = "block";  // Show Modal
+  })
 }
 
+function runtimeFormatter(runtime){
+  let runtimeHours = (runtime / 60)
+  let runtimeRHours = Math.floor(runtimeHours)
+  let runtimeMinutes = Math.round((runtimeHours - runtimeRHours) * 60)
 
+  return runtimeRHours + " hour(s) " + runtimeMinutes + " minutes"
+}

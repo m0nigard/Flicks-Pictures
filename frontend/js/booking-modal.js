@@ -6,6 +6,7 @@ async function setupBookingModal(processedData, id) {
   html = ''
   html += `
   <span class="close">&times;</span>
+  <h1>Upcoming showings</h1>
   <table class="booking-modal-table">
   <thead>
   <tr>
@@ -26,6 +27,8 @@ async function setupBookingModal(processedData, id) {
     <td>${element.numberOfAvailableSeats} 
     / ${element.numberOfTotalSeats}</td>
     `
+
+    //Checking if there are any available seats
     if(element.numberOfAvailableSeats <= 0){
       html += '<td>&#10060</td>'
     }else{

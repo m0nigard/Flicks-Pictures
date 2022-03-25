@@ -348,6 +348,14 @@ footer {
   padding: 20px;
   background-color: black;
 }
+@media screen and (max-width: 600px) {
+  .booking-modal-table td:nth-child(2) {
+    display:none;
+  }
+  .booking-modal-table th:nth-child(2) {
+    display:none;
+  }
+}
 
 /* Responsive changes */
 @media screen and (max-width: 600px) {
@@ -380,4 +388,5 @@ footer {
   .current-screenings-day:not(:first-child) {
     display: none;
   }
+  
 }
