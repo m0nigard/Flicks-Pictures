@@ -259,12 +259,17 @@ main {
 .movie-desc-table {
   text-align: left;
   border-collapse: collapse;
+}
+.movie-desc-table th,td {
+  padding-right: 10px;
+}
+
+.booking-modal-table {
+  text-align: left;
+  border-collapse: collapse;
   width: 90%;
 }
 
-.youtubeEmbed {
-  width: 100%;
-}
 iframe {
   width: 100%;
 }

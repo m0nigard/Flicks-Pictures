@@ -6,7 +6,7 @@ async function setupBookingModal(processedData, id) {
   html = ''
   html += `
   <span class="close">&times;</span>
-  <table class="movie-desc-table">
+  <table class="booking-modal-table">
   <thead>
   <tr>
   <th>Date</th>
@@ -18,16 +18,22 @@ async function setupBookingModal(processedData, id) {
 <tbody>
   `
   processedData.forEach(element => {
+
+
     html += `
     <td>${element.date}</td>
     <td>${element.auditoriumName}</td>
     <td>${element.numberOfAvailableSeats} 
     / ${element.numberOfTotalSeats}</td>
-
-    <td><a href="/tickets?screeningId=${element.screeningId}">&#9989;</a></td>
-    </tr>
-    
     `
+    if(element.numberOfAvailableSeats <= 0){
+      html += '<td>&#10060</td>'
+    }else{
+      html += `<td><a href="/tickets?screeningId=${element.screeningId}">&#9989;</a></td>`
+    }
+    
+    html+= '</tr>'
+  
   });
 
   html += '</tbody></table>'
