@@ -270,6 +270,10 @@ main {
   width: 90%;
 }
 
+.movie-details-modal-book {
+  text-decoration: none;
+}
+
 iframe {
   width: 100%;
 }

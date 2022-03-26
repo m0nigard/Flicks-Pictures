@@ -59,13 +59,12 @@ async function drawTodayContainer(screeningsToday, headtitle) {
 
 // Start method
 async function loadTodayContainer() {
-  let dateToday = new Date().toLocaleString("sv-SE", { timeZone: "Europe/Stockholm" });
-  let dateTomorrow = new Date((new Date().getTime()) + 86400000).toLocaleString("sv-SE", { timeZone: "Europe/Stockholm" });
+  let dateToday = new Date().
+  toLocaleString("sv-SE", { timeZone: "Europe/Stockholm" });
+  let dateTomorrow = new Date((new Date().getTime()) + 86400000)
+  .toLocaleString("sv-SE", { timeZone: "Europe/Stockholm" });
   let dateTodayStr = dateToday.substring(0, 10);
   let dateTomorrowStr = dateTomorrow.substring(0, 10);
-
-  console.log(dateToday)
-  console.log(dateTomorrow)
 
   drawTodayContainer(await getScreeningsPerDate(dateTodayStr), 'Today');
   drawTodayContainer(await getScreeningsPerDate(dateTomorrowStr), 'Tomorrow');

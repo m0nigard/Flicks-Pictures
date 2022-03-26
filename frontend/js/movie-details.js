@@ -4,7 +4,7 @@
 let id = 0;
 
 //rendering obj to HTML
-function renderMovieDetails(cssSelector, obj) {
+async function renderMovieDetails(cssSelector, obj) {
   //build HTML container
   let html = ''
   let outputGenres = "N/A", outputActors = "N/A", outputProdc = "N/A"
@@ -16,14 +16,13 @@ function renderMovieDetails(cssSelector, obj) {
     let actorsJson = JSON.parse(obj.actors)
     let prodcJson = JSON.parse(obj.productionCountries)
     let reviewsJson = JSON.parse(obj.reviewSources)
+    outputReviews = await(reviewHTMLBuilder(reviewsJson))
 
     outputGenres = jsonFormatter(genresJson)
     outputActors = jsonFormatter(actorsJson)
     outputProdc = jsonFormatter(prodcJson)
-    outputReviews = reviewHTMLBuilder(reviewsJson)
 
   } catch { (console.error("Error, Some JSON data is missing..")) }
-
 
   let runtime = runtimeFormatter(obj.minuteLength)
 

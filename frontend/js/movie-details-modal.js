@@ -20,7 +20,6 @@ async function setupBookingModal(processedData, id) {
   `
   processedData.forEach(element => {
 
-
     html += `
     <td>${element.date}</td>
     <td>${element.auditoriumName}</td>
@@ -30,9 +29,9 @@ async function setupBookingModal(processedData, id) {
 
     //Checking if there are any available seats
     if(element.numberOfAvailableSeats <= 0){
-      html += '<td>&#10060</td>'
+      html += `<td><a id="movie-details-modal-book-x" href="#">&#10060</a></td>`
     }else{
-      html += `<td><a href="/tickets?screeningId=${element.screeningId}">&#9989;</a></td>`
+      html += `<td><a id="movie-details-modal-book" href="/tickets?screeningId=${element.screeningId}">&#9989;</a></td>`
     }
     
     html+= '</tr>'
@@ -40,6 +39,8 @@ async function setupBookingModal(processedData, id) {
   });
 
   html += '</tbody></table>'
+
+
 
   // Setting the html to the modal-content div
   document.querySelector('.modal-content').innerHTML = html;
@@ -57,4 +58,13 @@ async function setupBookingModal(processedData, id) {
       modal.style.display = "none";
     }
   }
+
+  document.addEventListener("DOMContentLoaded", function() { 
+      document.getElementById("movie-details-modal-book-x").addEventListener('click', async event => {
+
+        launchToast("This movie is fully booked")
+        console.log("hej")
+    })
+  })
 }
+  
