@@ -16,7 +16,7 @@ async function renderMovieDetails(cssSelector, obj) {
     let actorsJson = JSON.parse(obj.actors)
     let prodcJson = JSON.parse(obj.productionCountries)
     let reviewsJson = JSON.parse(obj.reviewSources)
-    outputReviews = await(reviewHTMLBuilder(reviewsJson))
+    outputReviews = reviewHTMLBuilder(reviewsJson)
 
     outputGenres = jsonFormatter(genresJson)
     outputActors = jsonFormatter(actorsJson)
