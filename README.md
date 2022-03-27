@@ -12,7 +12,7 @@ Rest-API with Access control lists (ACL).
 - Movies
     - See a list of current movies with showings
     - Filtering by age and date
-    - Movie-details page with YT trailerz, additional info, reviews and booking functionality
+    - Movie-details page with YT trailers, additional info, reviews and booking functionality
  - Tickets
     - Date and movie selection
     - Responsive UI to select seats
