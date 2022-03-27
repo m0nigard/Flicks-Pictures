@@ -41,7 +41,7 @@ async function loadBookingHistoryPage() {
         // Movie details. Show details for the movie.
         document.querySelector("#movie-details").addEventListener("click", function (event) {
 
-            renderMovieDetails(info)
+            renderMovieDetailsBooking(info)
 
             // show the html
             document.querySelector(".modal-content").innerHTML = BookingHistoryPopUp
@@ -174,7 +174,7 @@ function renderPopUpBooking(info, today, movieDate) {
 }
 
 // render Movie Details
-function renderMovieDetails(info) {
+function renderMovieDetailsBooking(info) {
     BookingHistoryPopUp = `
         <span class="close" id = close-bookingInfo>&times;</span>
         <a href="/movie-details?id=${info.movieId}" id = "booking-image" class="movie-link"><img class ="movie-picture" src="./image/images-movies/${info.movieImage}"></a>
