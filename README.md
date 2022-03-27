@@ -36,7 +36,7 @@ Rest-API with Access control lists (ACL).
     - Responsive
     - Works on all screen sizes
 
-# Prerequisities
+# Prerequisites
 Node.js
 
 Visual Studio Code
